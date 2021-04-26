@@ -1,8 +1,9 @@
 const blessed = require('blessed');
 const execSync = require('child_process').execSync;
+// printf '\e[8;50;150t'
 
 const screen = blessed.screen({
-  smartCSR: true,
+  smartCSR: true
 });
 
 //WHITE BACKGROUND BOX - PARENT IS SCREEN
@@ -13,8 +14,8 @@ const backgroundBox = blessed.box({
   height: '100%',
   tags: true,
   style: {
-    fg: 'snow',
-    bg: 'snow',
+    fg: 231,
+    bg: 231,
   },
 });
 
@@ -23,9 +24,9 @@ const backgroundBox = blessed.box({
 const menuBar = blessed.box({
   parent: backgroundBox,
   top: 0,
-  left: '15%',
-  width: '85%',
-  height: '10%',
+  left: '12%',
+  width: '88%',
+  height: '7%',
   tags: true,
   style: {
     fg: 'white',
@@ -45,7 +46,7 @@ const saveButton = blessed.box({
   content: '{center}save{/center}',
   style: {
     fg: 'black',
-    bg: 'snow',
+    bg: 231,
   },
 });
 
@@ -59,7 +60,7 @@ const clearButton = blessed.box({
   content: '{center}clear{/center}',
   style: {
     fg: 'black',
-    bg: 'snow',
+    bg: 231,
   },
 });
 
@@ -73,7 +74,7 @@ const galleryButton = blessed.box({
   content: '{center} gallery{/center}',
   style: {
     fg: 'black',
-    bg: 'snow',
+    bg: 231,
   },
 });
 
@@ -87,7 +88,7 @@ const studioButton = blessed.box({
   content: '{center}studio{/center}',
   style: {
     fg: 'black',
-    bg: 'snow',
+    bg: 231,
   },
 });
 
@@ -95,10 +96,10 @@ const studioButton = blessed.box({
 ////////////////////////////////////////////////////////////////////////////////////////
 const colorPalette = blessed.box({
   parent: backgroundBox,
-  top: '10%',
-  left: '15%',
-  width: '85%',
-  height: '12%',
+  top: '7%',
+  left: '12%',
+  width: '88%',
+  height: '14%',
   tags: true,
   style: {
     fg: 'white',
@@ -110,11 +111,12 @@ const colorPalette = blessed.box({
 ////////////////////////////////////////////////////////////////////////////////////////
 const brushColorButton = blessed.box({
   parent: colorPalette,
-  top: 1,
+  top: 2,
   left: '5%',
   width: 15,
-  height: 2,
+  height: 1,
   tags: true,
+  valign: 'middle',
   content: '{center}Brush Color{/center}',
   style: {
     fg: 'white',
@@ -128,8 +130,9 @@ const canvasColorButton = blessed.box({
   bottom: 1,
   left: '5%',
   width: 15,
-  height: 2,
+  height: 1,
   tags: true,
+  valign: 'middle',
   content: '{center}Canvas Color{/center}',
   style: {
     fg: 'white',
@@ -269,12 +272,50 @@ const randomPaintBox = blessed.box({
   },
 });
 
+const greyPaintBox = blessed.box({
+  parent: colorPalette,
+  top: 2,
+  left: 105,
+  width: 7,
+  height: 3,
+  tags: true,
+  style: {
+    fg: 'white',
+    bg: 'cyan',
+  },
+});
+
+const anotherPaintBox = blessed.box({
+  parent: colorPalette,
+  top: 2,
+  left: 113,
+  width: 7,
+  height: 3,
+  tags: true,
+  style: {
+    fg: 'white',
+    bg: 'cyan',
+  },
+});
+
+const andMorePaintBox = blessed.box({
+  parent: colorPalette,
+  top: 2,
+  left: 121,
+  width: 7,
+  height: 3,
+  tags: true,
+  style: {
+    fg: 'white',
+    bg: 'cyan',
+  },
+});
 // LOGO BOX -PARENT
 const logoContainer = blessed.box({
   parent: screen,
   left: 0,
   top: 0,
-  width: '15%',
+  width: '12%',
   height: '20%',
   tags: true,
   style: {
@@ -288,8 +329,8 @@ const logoContainer = blessed.box({
 const toolBar = blessed.box({
   parent: backgroundBox,
   top: '20%',
-  width: '15%',
-  height: '70%',
+  width: '12%',
+  height: '74%',
   tags: true,
   style: {
     fg: 'white',
@@ -304,12 +345,12 @@ const brushSizeLabel = blessed.box({
   top: '3%',
   left: 'center',
   width: 15,
-  height: 2,
+  height: 1,
   tags: true,
   content: '{center}Brush Size{/center}',
   style: {
-    fg: 'white',
-    bg: 'red',
+    fg: 'black',
+    bg: '#ffc476',
   },
 });
 
@@ -328,9 +369,9 @@ const smallBrushButton = blessed.box({
 
 const mediumBrushButton = blessed.box({
   parent: toolBar,
-  top: '16%',
+  top: '18%',
   right: 2,
-  width: 7,
+  width: 6,
   height: 3,
   tags: true,
   style: {
@@ -341,10 +382,10 @@ const mediumBrushButton = blessed.box({
 
 const largeBrushButton = blessed.box({
   parent: toolBar,
-  top: '28%',
+  top: '29%',
   right: 2,
-  width: 12,
-  height: 6,
+  width: 9,
+  height: 4,
   tags: true,
   style: {
     fg: 'white',
@@ -355,10 +396,11 @@ const largeBrushButton = blessed.box({
 // Random brush
 const randomBrushButton = blessed.box({
   parent: toolBar,
-  top: '43%',
+  top: '45%',
   right: 2,
-  width: 15,
-  height: 7,
+  width: 12,
+  height: 5,
+  valign: 'middle',
   tags: true,
   content: '{center}Random Brush{/center}',
   style: {
@@ -369,10 +411,10 @@ const randomBrushButton = blessed.box({
 
 const largeEraseButton = blessed.box({
   parent: toolBar,
-  top: '60%',
+  top: '63%',
   right: 2,
-  width: 12,
-  height: 6,
+  width: 9,
+  height: 4,
   tags: true,
   style: {
     fg: 'white',
@@ -382,9 +424,9 @@ const largeEraseButton = blessed.box({
 
 const mediumEraseButton = blessed.box({
   parent: toolBar,
-  top: '78%',
+  top: '77%',
   right: 2,
-  width: 7,
+  width: 6,
   height: 3,
   tags: true,
   style: {
@@ -408,15 +450,15 @@ const smallEraseButton = blessed.box({
 
 const eraseLabel = blessed.box({
   parent: toolBar,
-  top: '94%',
+  top: '97%',
   left: 'center',
   width: 15,
-  height: 2,
+  height: 1,
   tags: true,
   content: '{center}Eraser{/center}',
   style: {
-    fg: 'white',
-    bg: 'red',
+    fg: 'black',
+    bg: '#ffc476',
   },
 });
 
@@ -425,9 +467,9 @@ const eraseLabel = blessed.box({
 const canvas = blessed.box({
   parent: backgroundBox,
   top: '20%',
-  left: '15%',
-  width: '85%',
-  height: '70%',
+  left: '12%',
+  width: '88%',
+  height: '74%',
   tags: true,
   border: {
     type: 'bg',
@@ -438,20 +480,21 @@ const canvas = blessed.box({
       bg: 'magenta',
     },
     fg: 'white',
-    bg: 'snow',
+    bg: 231,
   },
 });
 
 const inputContainer = blessed.box({
   parent: backgroundBox,
-  top: '90%',
+  top: '94%',
   width: '100%',
-  height: '10%',
+  height: '7%',
   tags: true,
+  valign: 'middle',
+  content: 'input text **********************************',
   style: {
     fg: 'white',
-    bg: '#c3f0c4',
-    transparent: true,
+    bg: '#c3f0c4'
   },
 });
 
