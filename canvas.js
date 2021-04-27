@@ -130,7 +130,7 @@ const colorPalette = blessed.box({
 const brushColorButton = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: '5%',
+  left: '3%',
   width: 15,
   height: 1,
   tags: true,
@@ -158,7 +158,7 @@ const canvasColorButton = blessed.box({
   parent: colorPalette,
   top: 4,
   bottom: 1,
-  left: '5%',
+  left: '3%',
   width: 15,
   height: 1,
   tags: true,
@@ -187,7 +187,7 @@ canvasColorButton.on('click', function (mouse) {
 const richerRedPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 25,
+  left: 20,
   width: 7,
   height: 3,
   style: {
@@ -209,7 +209,7 @@ richerRedPaintBox.on('click', function (mouse) {
 const coralReefPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 33,
+  left: 28,
   width: 7,
   height: 3,
   style: {
@@ -231,7 +231,7 @@ coralReefPaintBox.on('click', function (mouse) {
 const oranginaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 41,
+  left: 36,
   width: 7,
   height: 3,
   style: {
@@ -253,7 +253,7 @@ oranginaPaintBox.on('click', function (mouse) {
 const mellowApricotPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 49,
+  left: 44,
   width: 7,
   height: 3,
   style: {
@@ -275,7 +275,7 @@ mellowApricotPaintBox.on('click', function (mouse) {
 const goldenRodYellowPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 57,
+  left: 52,
   width: 7,
   height: 3,
   style: {
@@ -297,7 +297,7 @@ goldenRodYellowPaintBox.on('click', function (mouse) {
 const smintyMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 65,
+  left: 60,
   width: 7,
   height: 3,
   style: {
@@ -319,7 +319,7 @@ smintyMintPaintBox.on('click', function (mouse) {
 const forestedMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 73,
+  left: 68,
   width: 7,
   height: 3,
   style: {
@@ -341,7 +341,7 @@ forestedMintPaintBox.on('click', function (mouse) {
 const sighAnneCyanPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 81,
+  left: 76,
   width: 7,
   height: 3,
   style: {
@@ -363,7 +363,7 @@ sighAnneCyanPaintBox.on('click', function (mouse) {
 const cloudsBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 89,
+  left: 84,
   width: 7,
   height: 3,
   style: {
@@ -385,7 +385,7 @@ cloudsBluePaintBox.on('click', function (mouse) {
 const turquoiseBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 97,
+  left: 92,
   width: 7,
   height: 3,
   style: {
@@ -407,7 +407,7 @@ turquoiseBluePaintBox.on('click', function (mouse) {
 const violetBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 105,
+  left: 100,
   width: 7,
   height: 3,
   style: {
@@ -429,7 +429,7 @@ violetBluePaintBox.on('click', function (mouse) {
 const lovenderPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 113,
+  left: 108,
   width: 7,
   height: 3,
   style: {
@@ -451,7 +451,7 @@ lovenderPaintBox.on('click', function (mouse) {
 const madMagentaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 121,
+  left: 116,
   width: 7,
   height: 3,
   style: {
@@ -473,7 +473,7 @@ madMagentaPaintBox.on('click', function (mouse) {
 const randoPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 129,
+  left: 124,
   width: 7,
   height: 3,
   tags: true,
