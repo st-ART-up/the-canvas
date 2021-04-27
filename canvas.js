@@ -4,7 +4,7 @@ const execSync = require('child_process').execSync;
 // printf '\e[8;50;150t'
 
 const screen = blessed.screen({
-  smartCSR: true
+  smartCSR: true,
 });
 
 //WHITE BACKGROUND BOX - PARENT IS SCREEN
@@ -48,8 +48,8 @@ const saveButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -65,8 +65,8 @@ const clearButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -82,8 +82,8 @@ const galleryButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -99,8 +99,8 @@ const studioButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -121,7 +121,7 @@ const colorPalette = blessed.box({
   width: '88%',
   height: '14%',
   style: {
-    bg: 231
+    bg: 231,
   },
 });
 
@@ -143,8 +143,8 @@ const brushColorButton = blessed.box({
       bg: 183
     },
     hover: {
-      bg: 183
-    }
+      bg: 183,
+    },
   },
 });
 
@@ -551,8 +551,19 @@ const smallBrushButton = blessed.box({
   height: 1,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
+
+// click
+// smallBrushButton.on('click', function (mouse) {
+//   let brush = {
+//     width: 2,
+//     height: 1,
+//     transparent: true
+//   }});
 
 const mediumBrushButton = blessed.box({
   parent: toolBar,
@@ -562,8 +573,19 @@ const mediumBrushButton = blessed.box({
   height: 3,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
+
+// click
+// mediumBrushButton.on('click', function (mouse) {
+//     let brush = {
+//       width: 6,
+//       height: 3,
+//       transparent: true
+//     }});
 
 const largeBrushButton = blessed.box({
   parent: toolBar,
@@ -573,8 +595,19 @@ const largeBrushButton = blessed.box({
   height: 4,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
+
+// click
+// largeBrushButton.on('click', function (mouse) {
+//     let brush = {
+//       width: 9,
+//       height: 4,
+//       transparent: true
+//     }});
 
 // Random brush
 const randomBrushButton = blessed.box({
@@ -591,8 +624,8 @@ const randomBrushButton = blessed.box({
     bg: 194,
     bold: true,
     hover: {
-      bg: 183
-    }
+      bg: 183,
+    },
   },
 });
 
@@ -604,8 +637,19 @@ const largeEraseButton = blessed.box({
   height: 4,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
+
+// click
+// largeEraseButton.on('click', function (mouse) {
+//     let brush = {
+//       width: 9,
+//       height: 4,
+//       transparent: false
+//     }});
 
 const mediumEraseButton = blessed.box({
   parent: toolBar,
@@ -615,8 +659,19 @@ const mediumEraseButton = blessed.box({
   height: 3,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
+
+// click
+// mediumEraseButton.on('click', function (mouse) {
+//     let brush = {
+//       width: 6,
+//       height: 3,
+//       transparent: false
+//     }});
 
 const smallEraseButton = blessed.box({
   parent: toolBar,
@@ -626,6 +681,9 @@ const smallEraseButton = blessed.box({
   height: 1,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
 
@@ -643,6 +701,15 @@ const eraseLabel = blessed.box({
     bg: 231,
   },
 });
+
+// click
+// smallEraseButton.on('click', function (mouse) {
+//   let brush = {
+//     width: 2,
+//     height: 1,
+//     transparent: false,
+//   };
+// });
 
 //CANVAS - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -674,7 +741,7 @@ const inputContainer = blessed.box({
   content: 'input text **********************************',
   style: {
     fg: 227,
-    bg: 216
+    bg: 216,
   },
 });
 
@@ -683,3 +750,9 @@ screen.key(['escape', 'q', 'C-c'], function (ch, key) {
 });
 
 screen.render();
+
+module.exports = {
+  screen,
+  clearButton,
+  canvas
+}
