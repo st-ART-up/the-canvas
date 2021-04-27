@@ -484,3 +484,8 @@ screen.key(['escape', 'q', 'C-c'], function (ch, key) {
 });
 
 screen.render();
+
+module.exports = {
+  screen,
+  canvas
+}
