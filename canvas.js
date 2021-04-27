@@ -487,5 +487,6 @@ screen.render();
 
 module.exports = {
   screen,
+  clearButton,
   canvas
 }
