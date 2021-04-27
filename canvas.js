@@ -25,8 +25,8 @@ const backgroundBox = blessed.box({
 const menuBar = blessed.box({
   parent: backgroundBox,
   top: 0,
-  left: '12%',
-  width: '88%',
+  left: 0,
+  width: '100%',
   height: '7%',
   tags: true,
   style: {
@@ -39,7 +39,7 @@ const menuBar = blessed.box({
 const saveButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '5%',
+  left: '2%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -48,15 +48,32 @@ const saveButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194,
-    },
+      bg: 194
+    }
+  },
+});
+
+const uploadButton = blessed.box({
+  parent: menuBar,
+  top: 'center',
+  left: '14%',
+  width: '10%',
+  height: '60%',
+  tags: true,
+  content: '{center}upload{/center}',
+  style: {
+    fg: 'black',
+    bg: 227,
+    hover: {
+      bg: 194
+    }
   },
 });
 
 const clearButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '20%',
+  left: '26%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -65,8 +82,8 @@ const clearButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194,
-    },
+      bg: 194
+    }
   },
 });
 
@@ -82,8 +99,8 @@ const galleryButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194,
-    },
+      bg: 194
+    }
   },
 });
 
@@ -121,7 +138,7 @@ const colorPalette = blessed.box({
   width: '88%',
   height: '14%',
   style: {
-    bg: 231,
+    bg: 231
   },
 });
 
@@ -138,12 +155,12 @@ const brushColorButton = blessed.box({
   content: '{center}Brush Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
-    focus: {
+    bg: 194,
+    hover: {
       bg: 183
     },
-    hover: {
-      bg: 183,
+    focus: {
+      bg: 183
     },
   },
 });
@@ -166,13 +183,13 @@ const canvasColorButton = blessed.box({
   content: '{center}Canvas Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
+    bg: 194,
+    hover: {
+      bg: 183
+    },
     focus: {
       bg: 183
     },
-    hover: {
-      bg: 183
-    }
   },
 });
 
@@ -217,6 +234,7 @@ const coralReefPaintBox = blessed.box({
   },
 });
 
+
 coralReefPaintBox.on('click', function (mouse) {
   if (bgSelect) {
     canvas.style.bg = 210;
@@ -238,6 +256,7 @@ const oranginaPaintBox = blessed.box({
     bg: 216,
   },
 });
+
 
 oranginaPaintBox.on('click', function (mouse) {
   if (bgSelect) {
@@ -501,9 +520,9 @@ randoPaintBox.on('click', function (mouse) {
 const logoContainer = blessed.box({
   parent: screen,
   left: 0,
-  top: 0,
+  top: '7%',
   width: '12%',
-  height: '20%',
+  height: '13%',
   tags: true,
   valign: 'middle',
   content: '{center}Logo Placeholder{/center}',
@@ -729,21 +748,92 @@ const canvas = blessed.box({
     },
     bg: 231,
   },
+  // added for text input ability and scrollbar in small screen
+  keys: true,
+  mouse: true,
+  alwaysScroll: true,
+  scrollable: true,
+  scrollbar: {
+    ch: 'o',
+    bg: 183
+  }
 });
 
+
+//INPUT BAR - PARENT
+////////////////////////////////////////////////////////////////////////////////////////
 const inputContainer = blessed.box({
   parent: backgroundBox,
   top: '94%',
   width: '100%',
-  height: '7%',
+  height: 3,
   tags: true,
   valign: 'middle',
-  content: 'input text **********************************',
   style: {
     fg: 227,
     bg: 216,
   },
 });
+//INPUT BAR - CHILDREN
+////////////////////////////////////////////////////////////////////////////////////////
+const inputDirectionButton = blessed.button({
+  parent: inputContainer,
+    name: 'text directions',
+    content: '{center}how to\nadd text\n   ---->>{/center}',
+    top: 0,
+    left: 0,
+    width: '12%',
+    height: 3,
+    shrink: true,
+    padding: {
+        // top: 1,
+        right: 2,
+        botton: 1,
+        left: 1
+    },
+    style:  {
+        bold: true,
+        fg: 'black',
+        bg: 194,
+        hover: {
+          bg: 183
+        }
+    },
+    tags: true,
+    text: {
+        align: 'center',
+        valign: 'center'
+    },
+});
+
+// const textDirectionBox = blessed.
+
+const inputBar = blessed.textbox({
+  parent: inputContainer,
+  // bottom: 1,
+  top: 'center',
+  left: '13%',
+  right: '96%',
+  height: 1,
+  width: '86%',
+  keys: true,
+  mouse: true,
+  inputOnFocus: true,
+  style: {
+    fg: 57,
+    bg: '#ffef72'
+  }
+});
+
+inputBar.on('submit', (text) => {
+  log(text);
+  inputBar.clearValue();
+});
+
+const log = (text) => {
+  canvas.pushLine(text);
+  screen.render();
+}
 
 screen.key(['escape', 'q', 'C-c'], function (ch, key) {
   return process.exit(0);
