@@ -48,8 +48,8 @@ const saveButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -82,8 +82,8 @@ const clearButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -99,8 +99,8 @@ const galleryButton = blessed.box({
     fg: 'black',
     bg: 227,
     hover: {
-      bg: 194
-    }
+      bg: 194,
+    },
   },
 });
 
@@ -138,7 +138,7 @@ const colorPalette = blessed.box({
   width: '88%',
   height: '14%',
   style: {
-    bg: 231
+    bg: 231,
   },
 });
 
@@ -573,6 +573,9 @@ const smallBrushButton = blessed.box({
     hover: {
       bg: 7,
     },
+    focus: {
+      bg: 7,
+    },
   },
 });
 
@@ -595,6 +598,9 @@ const mediumBrushButton = blessed.box({
     hover: {
       bg: 7,
     },
+    focus: {
+      bg: 7,
+    },
   },
 });
 
@@ -615,6 +621,9 @@ const largeBrushButton = blessed.box({
   style: {
     bg: '#393B42',
     hover: {
+      bg: 7,
+    },
+    focus: {
       bg: 7,
     },
   },
@@ -659,6 +668,9 @@ const largeEraseButton = blessed.box({
     hover: {
       bg: 117,
     },
+    focus: {
+      bg: 117,
+    },
   },
 });
 
@@ -681,6 +693,9 @@ const mediumEraseButton = blessed.box({
     hover: {
       bg: 117,
     },
+    focus: {
+      bg: 117,
+    },
   },
 });
 
@@ -701,6 +716,9 @@ const smallEraseButton = blessed.box({
   style: {
     bg: '#A7B3CA',
     hover: {
+      bg: 117,
+    },
+    focus: {
       bg: 117,
     },
   },
