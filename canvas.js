@@ -29,8 +29,7 @@ const menuBar = blessed.box({
   height: '7%',
   tags: true,
   style: {
-    fg: 'white',
-    bg: 'red',
+    bg: 216,
   },
 });
 
@@ -46,7 +45,10 @@ const saveButton = blessed.box({
   content: '{center}save{/center}',
   style: {
     fg: 'black',
-    bg: 231,
+    bg: 227,
+    hover: {
+      bg: 194
+    }
   },
 });
 
@@ -60,7 +62,10 @@ const clearButton = blessed.box({
   content: '{center}clear{/center}',
   style: {
     fg: 'black',
-    bg: 231,
+    bg: 227,
+    hover: {
+      bg: 194
+    }
   },
 });
 
@@ -74,7 +79,10 @@ const galleryButton = blessed.box({
   content: '{center} gallery{/center}',
   style: {
     fg: 'black',
-    bg: 231,
+    bg: 227,
+    hover: {
+      bg: 194
+    }
   },
 });
 
@@ -88,7 +96,10 @@ const studioButton = blessed.box({
   content: '{center}studio{/center}',
   style: {
     fg: 'black',
-    bg: 231,
+    bg: 227,
+    hover: {
+      bg: 194
+    }
   },
 });
 
@@ -100,10 +111,8 @@ const colorPalette = blessed.box({
   left: '12%',
   width: '88%',
   height: '14%',
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'blue',
+    bg: 231
   },
 });
 
@@ -119,8 +128,11 @@ const brushColorButton = blessed.box({
   valign: 'middle',
   content: '{center}Brush Color{/center}',
   style: {
-    fg: 'white',
-    bg: 'red',
+    fg: 'black',
+    bg: 216,
+    hover: {
+      bg: 183
+    }
   },
 });
 
@@ -135,179 +147,156 @@ const canvasColorButton = blessed.box({
   valign: 'middle',
   content: '{center}Canvas Color{/center}',
   style: {
-    fg: 'white',
-    bg: 'cyan',
-  },
+    fg: 'black',
+    bg: 216,
+    hover: {
+      bg: 183
+    }
+  }
 });
 
 // Paint Boxes
 
-const whiteStallionPaintBox = blessed.box({
+const richerRedPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 25,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 160,
   },
 });
 
-const yellowSunPaintBox = blessed.box({
+const coralReefPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 33,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 210,
   },
 });
 
-const greenPaintBox = blessed.box({
+const oranginaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 41,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 216,
   },
 });
 
-const blackPaintBox = blessed.box({
+const mellowApricotPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 49,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#FFC476',
   },
 });
 
-const bluePaintBox = blessed.box({
+const goldenRodYellowPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 57,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 227,
   },
 });
 
-const redPaintBox = blessed.box({
+const smintyMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 65,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 194,
   },
 });
 
-const purplePaintBox = blessed.box({
+const forestedMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 73,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 115,
   },
 });
 
-const orangePaintBox = blessed.box({
+const sighAnneCyanPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 81,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
     bg: 'cyan',
   },
 });
 
-const pinkPaintBox = blessed.box({
+const cloudsBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 89,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 117,
   },
 });
 
-const randomPaintBox = blessed.box({
+const turquoiseBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 97,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 'light cyan',
   },
 });
 
-const greyPaintBox = blessed.box({
+const violetBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 105,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 57,
   },
 });
 
-const anotherPaintBox = blessed.box({
+const lovenderPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 113,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 183,
   },
 });
 
-const andMorePaintBox = blessed.box({
+const madMagentaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
   left: 121,
   width: 7,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: 'magenta',
   },
 });
 // LOGO BOX -PARENT
@@ -318,9 +307,12 @@ const logoContainer = blessed.box({
   width: '12%',
   height: '20%',
   tags: true,
+  valign: 'middle',
+  content: '{center}Logo Placeholder{/center}',
   style: {
-    fg: 'white',
-    bg: 'light cyan',
+    fg: 'black',
+    bg: 231,
+    bold: true,
   },
 });
 
@@ -331,10 +323,8 @@ const toolBar = blessed.box({
   top: '20%',
   width: '12%',
   height: '74%',
-  tags: true,
   style: {
-    fg: 'white',
-    bg: '#ffc476',
+    bg: 231,
   },
 });
 
@@ -350,7 +340,8 @@ const brushSizeLabel = blessed.box({
   content: '{center}Brush Size{/center}',
   style: {
     fg: 'black',
-    bg: '#ffc476',
+    bold: true,
+    bg: 231,
   },
 });
 
@@ -360,10 +351,8 @@ const smallBrushButton = blessed.box({
   right: 2,
   width: 2,
   height: 1,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#393B42',
   },
 });
 
@@ -373,10 +362,8 @@ const mediumBrushButton = blessed.box({
   right: 2,
   width: 6,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#393B42',
   },
 });
 
@@ -386,10 +373,8 @@ const largeBrushButton = blessed.box({
   right: 2,
   width: 9,
   height: 4,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#393B42',
   },
 });
 
@@ -404,8 +389,12 @@ const randomBrushButton = blessed.box({
   tags: true,
   content: '{center}Random Brush{/center}',
   style: {
-    fg: 'white',
-    bg: 'magenta',
+    fg: 'black',
+    bg: 194,
+    bold: true,
+    hover: {
+      bg: 183
+    }
   },
 });
 
@@ -415,10 +404,8 @@ const largeEraseButton = blessed.box({
   right: 2,
   width: 9,
   height: 4,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#A7B3CA',
   },
 });
 
@@ -428,10 +415,8 @@ const mediumEraseButton = blessed.box({
   right: 2,
   width: 6,
   height: 3,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#A7B3CA',
   },
 });
 
@@ -441,10 +426,8 @@ const smallEraseButton = blessed.box({
   right: 2,
   width: 2,
   height: 1,
-  tags: true,
   style: {
-    fg: 'white',
-    bg: 'cyan',
+    bg: '#A7B3CA',
   },
 });
 
@@ -455,10 +438,11 @@ const eraseLabel = blessed.box({
   width: 15,
   height: 1,
   tags: true,
-  content: '{center}Eraser{/center}',
+  content: '{center}Eraser Size{/center}',
   style: {
     fg: 'black',
-    bg: '#ffc476',
+    bold: true,
+    bg: 231,
   },
 });
 
@@ -470,16 +454,14 @@ const canvas = blessed.box({
   left: '12%',
   width: '88%',
   height: '74%',
-  tags: true,
   border: {
     type: 'bg',
     ch: ' ',
   },
   style: {
     border: {
-      bg: 'magenta',
+      bg: '#A7B3CA',
     },
-    fg: 'white',
     bg: 231,
   },
 });
@@ -493,8 +475,8 @@ const inputContainer = blessed.box({
   valign: 'middle',
   content: 'input text **********************************',
   style: {
-    fg: 'white',
-    bg: '#c3f0c4'
+    fg: 227,
+    bg: 216
   },
 });
 
