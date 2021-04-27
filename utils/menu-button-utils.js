@@ -1,5 +1,5 @@
 const blessed = require('blessed');
-const { screen, canvas } = require('../canvas');
+const { screen, canvas } = require('../interface/startup-screen');
 
 function clearCanvas(paint) {
     paint.destroy();
