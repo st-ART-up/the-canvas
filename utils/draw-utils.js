@@ -19,7 +19,6 @@ function newBrushStroke(mouse, color, brush) {
     clearButton.on('click', function (mouse) {
         clearCanvas(newPaintSplash)
     })
-
     screen.render();
 }
 
