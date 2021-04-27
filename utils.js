@@ -1,5 +1,5 @@
 
-let { drawColor, bgColor, bgSelect } = require('./canvas');
+let { drawColor, bgColor, bgSelect } = require('./interface/startup-screen');
 
 function randomColor() {
     return [Math.random() * 255, Math.random() * 255, Math.random() * 255]
