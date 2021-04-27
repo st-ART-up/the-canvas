@@ -1,4 +1,5 @@
 const blessed = require('blessed');
+const { randomColor } = require('./utils');
 const execSync = require('child_process').execSync;
 // printf '\e[8;50;150t'
 
@@ -24,8 +25,8 @@ const backgroundBox = blessed.box({
 const menuBar = blessed.box({
   parent: backgroundBox,
   top: 0,
-  left: '12%',
-  width: '88%',
+  left: 0,
+  width: '100%',
   height: '7%',
   tags: true,
   style: {
@@ -38,7 +39,7 @@ const menuBar = blessed.box({
 const saveButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '5%',
+  left: '2%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -52,10 +53,27 @@ const saveButton = blessed.box({
   },
 });
 
+const uploadButton = blessed.box({
+  parent: menuBar,
+  top: 'center',
+  left: '14%',
+  width: '10%',
+  height: '60%',
+  tags: true,
+  content: '{center}upload{/center}',
+  style: {
+    fg: 'black',
+    bg: 227,
+    hover: {
+      bg: 194
+    }
+  },
+});
+
 const clearButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '20%',
+  left: '26%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -103,6 +121,14 @@ const studioButton = blessed.box({
   },
 });
 
+//COLOR VAIRABLES 
+////////////////////////////////////////////////////////////////////////////////////////
+let drawColor = randomColor();
+let bgColor = randomColor();
+let bgSelect = false;
+
+// module.exports = { drawColor, bgColor, bgSelect };
+
 //COLOR PALETTE BOX - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
 const colorPalette = blessed.box({
@@ -121,7 +147,7 @@ const colorPalette = blessed.box({
 const brushColorButton = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: '5%',
+  left: '3%',
   width: 15,
   height: 1,
   tags: true,
@@ -129,18 +155,27 @@ const brushColorButton = blessed.box({
   content: '{center}Brush Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
+    bg: 194,
     hover: {
-      bg: 183,
+      bg: 183
+    },
+    focus: {
+      bg: 183
     },
   },
+});
+
+brushColorButton.on('click', function (mouse) {
+  bgSelect = false;
+  brushColorButton.focus();
+  screen.render();
 });
 
 const canvasColorButton = blessed.box({
   parent: colorPalette,
   top: 4,
   bottom: 1,
-  left: '5%',
+  left: '3%',
   width: 15,
   height: 1,
   tags: true,
@@ -148,11 +183,20 @@ const canvasColorButton = blessed.box({
   content: '{center}Canvas Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
+    bg: 194,
     hover: {
-      bg: 183,
+      bg: 183
+    },
+    focus: {
+      bg: 183
     },
   },
+});
+
+canvasColorButton.on('click', function (mouse) {
+  bgSelect = true;
+  canvasColorButton.focus();
+  screen.render();
 });
 
 // Paint Boxes
@@ -160,7 +204,7 @@ const canvasColorButton = blessed.box({
 const richerRedPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 25,
+  left: 20,
   width: 7,
   height: 3,
   style: {
@@ -168,10 +212,21 @@ const richerRedPaintBox = blessed.box({
   },
 });
 
+richerRedPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 160;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 160;
+    screen.render();
+  }
+});
+
 const coralReefPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 33,
+  left: 28,
   width: 7,
   height: 3,
   style: {
@@ -179,10 +234,22 @@ const coralReefPaintBox = blessed.box({
   },
 });
 
+
+coralReefPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 210;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 210;
+    screen.render();
+  }
+});
+
 const oranginaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 41,
+  left: 36,
   width: 7,
   height: 3,
   style: {
@@ -190,10 +257,22 @@ const oranginaPaintBox = blessed.box({
   },
 });
 
+
+oranginaPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 216;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 216;
+    screen.render();
+  }
+});
+
 const mellowApricotPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 49,
+  left: 44,
   width: 7,
   height: 3,
   style: {
@@ -201,10 +280,21 @@ const mellowApricotPaintBox = blessed.box({
   },
 });
 
+mellowApricotPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = '#FFC476';
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = '#FFC476';
+    screen.render();
+  }
+});
+
 const goldenRodYellowPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 57,
+  left: 52,
   width: 7,
   height: 3,
   style: {
@@ -212,10 +302,21 @@ const goldenRodYellowPaintBox = blessed.box({
   },
 });
 
+goldenRodYellowPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 227;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 227;
+    screen.render();
+  }
+});
+
 const smintyMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 65,
+  left: 60,
   width: 7,
   height: 3,
   style: {
@@ -223,10 +324,21 @@ const smintyMintPaintBox = blessed.box({
   },
 });
 
+smintyMintPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 194;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 194;
+    screen.render();
+  }
+});
+
 const forestedMintPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 73,
+  left: 68,
   width: 7,
   height: 3,
   style: {
@@ -234,10 +346,21 @@ const forestedMintPaintBox = blessed.box({
   },
 });
 
+forestedMintPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 115;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 115;
+    screen.render();
+  }
+});
+
 const sighAnneCyanPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 81,
+  left: 76,
   width: 7,
   height: 3,
   style: {
@@ -245,10 +368,21 @@ const sighAnneCyanPaintBox = blessed.box({
   },
 });
 
+sighAnneCyanPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 'cyan';
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 'cyan';
+    screen.render();
+  }
+});
+
 const cloudsBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 89,
+  left: 84,
   width: 7,
   height: 3,
   style: {
@@ -256,10 +390,21 @@ const cloudsBluePaintBox = blessed.box({
   },
 });
 
+cloudsBluePaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 117;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 117;
+    screen.render();
+  }
+});
+
 const turquoiseBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 97,
+  left: 92,
   width: 7,
   height: 3,
   style: {
@@ -267,10 +412,21 @@ const turquoiseBluePaintBox = blessed.box({
   },
 });
 
+turquoiseBluePaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 'light cyan';
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 'light cyan';
+    screen.render();
+  }
+});
+
 const violetBluePaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 105,
+  left: 100,
   width: 7,
   height: 3,
   style: {
@@ -278,10 +434,21 @@ const violetBluePaintBox = blessed.box({
   },
 });
 
+violetBluePaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 57;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 57;
+    screen.render();
+  }
+});
+
 const lovenderPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 113,
+  left: 108,
   width: 7,
   height: 3,
   style: {
@@ -289,23 +456,73 @@ const lovenderPaintBox = blessed.box({
   },
 });
 
+lovenderPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 183;
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 183;
+    screen.render();
+  }
+});
+
 const madMagentaPaintBox = blessed.box({
   parent: colorPalette,
   top: 2,
-  left: 121,
+  left: 116,
   width: 7,
   height: 3,
   style: {
     bg: 'magenta',
   },
 });
+
+madMagentaPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = 'magenta';
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = 'magenta';
+    screen.render();
+  }
+});
+
+const randoPaintBox = blessed.box({
+  parent: colorPalette,
+  top: 2,
+  left: 124,
+  width: 7,
+  height: 3,
+  tags: true,
+  content: '{center}??{/center}',
+  valign: 'middle',
+  style: {
+    fg: 'black',
+    bold: true,
+    bg: 194,
+  },
+});
+
+randoPaintBox.on('click', function (mouse) {
+  if (bgSelect) {
+    canvas.style.bg = randomColor();
+    screen.render();
+  }
+  else {
+    colorPalette.style.bg = randomColor();
+    screen.render();
+  }
+});
+
 // LOGO BOX -PARENT
 const logoContainer = blessed.box({
   parent: screen,
   left: 0,
-  top: 0,
+  top: '7%',
   width: '12%',
-  height: '20%',
+  height: '13%',
   tags: true,
   valign: 'middle',
   content: '{center}Logo Placeholder{/center}',
@@ -549,24 +766,101 @@ const canvas = blessed.box({
     },
     bg: 231,
   },
+  // added for text input ability and scrollbar in small screen
+  keys: true,
+  mouse: true,
+  alwaysScroll: true,
+  scrollable: true,
+  scrollbar: {
+    ch: 'o',
+    bg: 183
+  }
 });
 
+
+//INPUT BAR - PARENT
+////////////////////////////////////////////////////////////////////////////////////////
 const inputContainer = blessed.box({
   parent: backgroundBox,
   top: '94%',
   width: '100%',
-  height: '7%',
+  height: 3,
   tags: true,
   valign: 'middle',
-  content: 'input text **********************************',
   style: {
     fg: 227,
     bg: 216,
   },
 });
+//INPUT BAR - CHILDREN
+////////////////////////////////////////////////////////////////////////////////////////
+const inputDirectionButton = blessed.button({
+  parent: inputContainer,
+    name: 'text directions',
+    content: '{center}how to\nadd text\n   ---->>{/center}',
+    top: 0,
+    left: 0,
+    width: '12%',
+    height: 3,
+    shrink: true,
+    padding: {
+        // top: 1,
+        right: 2,
+        botton: 1,
+        left: 1
+    },
+    style:  {
+        bold: true,
+        fg: 'black',
+        bg: 194,
+        hover: {
+          bg: 183
+        }
+    },
+    tags: true,
+    text: {
+        align: 'center',
+        valign: 'center'
+    },
+});
+
+// const textDirectionBox = blessed.
+
+const inputBar = blessed.textbox({
+  parent: inputContainer,
+  // bottom: 1,
+  top: 'center',
+  left: '13%',
+  right: '96%',
+  height: 1,
+  width: '86%',
+  keys: true,
+  mouse: true,
+  inputOnFocus: true,
+  style: {
+    fg: 57,
+    bg: '#ffef72'
+  }
+});
+
+inputBar.on('submit', (text) => {
+  log(text);
+  inputBar.clearValue();
+});
+
+const log = (text) => {
+  canvas.pushLine(text);
+  screen.render();
+}
 
 screen.key(['escape', 'q', 'C-c'], function (ch, key) {
   return process.exit(0);
 });
 
 screen.render();
+
+module.exports = {
+  screen,
+  clearButton,
+  canvas
+}
