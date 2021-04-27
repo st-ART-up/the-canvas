@@ -155,14 +155,7 @@ const brushColorButton = blessed.box({
   content: '{center}Brush Color{/center}',
   style: {
     fg: 'black',
-<<<<<<< HEAD
-    bg: 216,
-    focus: {
-      bg: 183
-    },
-=======
     bg: 194,
->>>>>>> 969e58d8e14d09cbfa21a3c41388818cf4db8272
     hover: {
       bg: 183
     },
@@ -190,15 +183,6 @@ const canvasColorButton = blessed.box({
   content: '{center}Canvas Color{/center}',
   style: {
     fg: 'black',
-<<<<<<< HEAD
-    bg: 216,
-    focus: {
-      bg: 183
-    },
-    hover: {
-      bg: 183
-    }
-=======
     bg: 194,
     hover: {
       bg: 183
@@ -206,7 +190,6 @@ const canvasColorButton = blessed.box({
     focus: {
       bg: 183
     },
->>>>>>> 969e58d8e14d09cbfa21a3c41388818cf4db8272
   },
 });
 
@@ -251,10 +234,6 @@ const coralReefPaintBox = blessed.box({
   },
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 969e58d8e14d09cbfa21a3c41388818cf4db8272
 coralReefPaintBox.on('click', function (mouse) {
   if (bgSelect) {
     canvas.style.bg = 210;
@@ -277,10 +256,6 @@ const oranginaPaintBox = blessed.box({
   },
 });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 969e58d8e14d09cbfa21a3c41388818cf4db8272
 oranginaPaintBox.on('click', function (mouse) {
   if (bgSelect) {
     canvas.style.bg = 216;
@@ -819,32 +794,32 @@ const inputContainer = blessed.box({
 ////////////////////////////////////////////////////////////////////////////////////////
 const inputDirectionButton = blessed.button({
   parent: inputContainer,
-    name: 'text directions',
-    content: '{center}how to\nadd text\n   ---->>{/center}',
-    top: 0,
-    left: 0,
-    width: '12%',
-    height: 3,
-    shrink: true,
-    padding: {
-        // top: 1,
-        right: 2,
-        botton: 1,
-        left: 1
-    },
-    style:  {
-        bold: true,
-        fg: 'black',
-        bg: 194,
-        hover: {
-          bg: 183
-        }
-    },
-    tags: true,
-    text: {
-        align: 'center',
-        valign: 'center'
-    },
+  name: 'text directions',
+  content: '{center}how to\nadd text\n   ---->>{/center}',
+  top: 0,
+  left: 0,
+  width: '12%',
+  height: 3,
+  shrink: true,
+  padding: {
+    // top: 1,
+    right: 2,
+    botton: 1,
+    left: 1
+  },
+  style: {
+    bold: true,
+    fg: 'black',
+    bg: 194,
+    hover: {
+      bg: 183
+    }
+  },
+  tags: true,
+  text: {
+    align: 'center',
+    valign: 'center'
+  },
 });
 
 // const textDirectionBox = blessed.

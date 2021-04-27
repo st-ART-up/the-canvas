@@ -1,6 +1,7 @@
 const blessed = require('blessed');
-const { screen, canvas, clearButton } = require('../canvas');
-const { clearCanvas } = require('./menu-button-utils')
+const { screen, canvas } = require('../interface/startup-screen');
+const { clearButton } = require('../interface/menu-bar-children');
+const { clearCanvas } = require('./menu-button-utils');
 
 function newBrushStroke(mouse, color, brush) {
     const newPaintSplash = blessed.box({
