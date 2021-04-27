@@ -353,6 +353,9 @@ const smallBrushButton = blessed.box({
   height: 1,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
 
@@ -372,6 +375,9 @@ const mediumBrushButton = blessed.box({
   height: 3,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
 
@@ -391,6 +397,9 @@ const largeBrushButton = blessed.box({
   height: 4,
   style: {
     bg: '#393B42',
+    hover: {
+      bg: 7,
+    },
   },
 });
 
@@ -430,6 +439,9 @@ const largeEraseButton = blessed.box({
   height: 4,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
 
@@ -449,6 +461,9 @@ const mediumEraseButton = blessed.box({
   height: 3,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
 
@@ -468,6 +483,9 @@ const smallEraseButton = blessed.box({
   height: 1,
   style: {
     bg: '#A7B3CA',
+    hover: {
+      bg: 117,
+    },
   },
 });
 
