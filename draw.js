@@ -1,5 +1,5 @@
 const blessed = require('blessed');
-const { screen, canvas } = require('./canvas');
+const { screen, canvas, clearButton } = require('./canvas');
 const { newBrushStroke } = require('./utils/draw-utils');
 
 
@@ -8,8 +8,8 @@ const { newBrushStroke } = require('./utils/draw-utils');
 // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
 
 canvas.on('click', function (mouse) {
-    newBrushStroke(mouse, 115, {width: 2, height: 1});
-})
+    newBrushStroke(mouse, 115, {width: 2, height: 1, transparent: false});
+});
 
 screen.key(['escape', 'q', 'C-c'], function (ch, key) {
     return process.exit(0);

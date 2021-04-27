@@ -1,8 +1,9 @@
 const blessed = require('blessed');
-const { screen, canvas } = require('../canvas.js');
+const { screen, canvas, clearButton } = require('../canvas');
+const { clearCanvas } = require('./menu-button-utils')
 
 function newBrushStroke(mouse, color, brush) {
-    const newBrushStroke = blessed.box({
+    const newPaintSplash = blessed.box({
         parent: canvas,
         top: mouse.y - 11,
         left: mouse.x - 20,
@@ -11,10 +12,13 @@ function newBrushStroke(mouse, color, brush) {
         type: 'overlay',
         style: {
             bg: color,
-            transparent: true,
+            transparent: brush.transparent,
         }
     });
 
+    clearButton.on('click', function (mouse) {
+        clearCanvas(newPaintSplash)
+    })
     screen.render();
 }
 
