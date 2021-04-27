@@ -24,8 +24,8 @@ const backgroundBox = blessed.box({
 const menuBar = blessed.box({
   parent: backgroundBox,
   top: 0,
-  left: '12%',
-  width: '88%',
+  left: 0,
+  width: '100%',
   height: '7%',
   tags: true,
   style: {
@@ -38,7 +38,7 @@ const menuBar = blessed.box({
 const saveButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '5%',
+  left: '2%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -52,10 +52,27 @@ const saveButton = blessed.box({
   },
 });
 
+const uploadButton = blessed.box({
+  parent: menuBar,
+  top: 'center',
+  left: '14%',
+  width: '10%',
+  height: '60%',
+  tags: true,
+  content: '{center}upload{/center}',
+  style: {
+    fg: 'black',
+    bg: 227,
+    hover: {
+      bg: 194
+    }
+  },
+});
+
 const clearButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '20%',
+  left: '26%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -103,6 +120,9 @@ const studioButton = blessed.box({
   },
 });
 
+//MENUBAR - CHILDREN
+////////////////////////////////////////////////////////////////////////////////////////
+
 //COLOR PALETTE BOX - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
 const colorPalette = blessed.box({
@@ -129,7 +149,7 @@ const brushColorButton = blessed.box({
   content: '{center}Brush Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
+    bg: 194,
     hover: {
       bg: 183
     }
@@ -148,7 +168,7 @@ const canvasColorButton = blessed.box({
   content: '{center}Canvas Color{/center}',
   style: {
     fg: 'black',
-    bg: 216,
+    bg: 194,
     hover: {
       bg: 183
     }
@@ -303,9 +323,9 @@ const madMagentaPaintBox = blessed.box({
 const logoContainer = blessed.box({
   parent: screen,
   left: 0,
-  top: 0,
+  top: '7%',
   width: '12%',
-  height: '20%',
+  height: '13%',
   tags: true,
   valign: 'middle',
   content: '{center}Logo Placeholder{/center}',
@@ -481,8 +501,8 @@ const canvas = blessed.box({
 const inputContainer = blessed.box({
   parent: backgroundBox,
   top: '94%',
-  width: '100%-1',
-  height: '9%',
+  width: '100%',
+  height: 3,
   tags: true,
   valign: 'middle',
   style: {
@@ -499,7 +519,7 @@ const inputDirectionButton = blessed.button({
     top: 0,
     left: 0,
     width: '12%',
-    height: '100%',
+    height: 3,
     shrink: true,
     padding: {
         // top: 1,
@@ -511,13 +531,18 @@ const inputDirectionButton = blessed.button({
         bold: true,
         fg: 'black',
         bg: 194,
+        hover: {
+          bg: 183
+        }
     },
     tags: true,
     text: {
         align: 'center',
         valign: 'center'
-    }
+    },
 });
+
+// const textDirectionBox = blessed.
 
 const inputBar = blessed.textbox({
   parent: inputContainer,
