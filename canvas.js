@@ -464,21 +464,87 @@ const canvas = blessed.box({
     },
     bg: 231,
   },
+  // added for text input ability and scrollbar in small screen
+  keys: true,
+  mouse: true,
+  alwaysScroll: true,
+  scrollable: true,
+  scrollbar: {
+    ch: 'o',
+    bg: 183
+  }
 });
 
+
+//INPUT BAR - PARENT
+////////////////////////////////////////////////////////////////////////////////////////
 const inputContainer = blessed.box({
   parent: backgroundBox,
   top: '94%',
-  width: '100%',
-  height: '7%',
+  width: '100%-1',
+  height: '9%',
   tags: true,
   valign: 'middle',
-  content: 'input text **********************************',
   style: {
     fg: 227,
     bg: 216
   },
 });
+//INPUT BAR - CHILDREN
+////////////////////////////////////////////////////////////////////////////////////////
+const inputDirectionButton = blessed.button({
+  parent: inputContainer,
+    name: 'text directions',
+    content: '{center}how to\nadd text\n   ---->>{/center}',
+    top: 0,
+    left: 0,
+    width: '12%',
+    height: '100%',
+    shrink: true,
+    padding: {
+        // top: 1,
+        right: 2,
+        botton: 1,
+        left: 1
+    },
+    style:  {
+        bold: true,
+        fg: 'black',
+        bg: 194,
+    },
+    tags: true,
+    text: {
+        align: 'center',
+        valign: 'center'
+    }
+});
+
+const inputBar = blessed.textbox({
+  parent: inputContainer,
+  // bottom: 1,
+  top: 'center',
+  left: '13%',
+  right: '96%',
+  height: 1,
+  width: '86%',
+  keys: true,
+  mouse: true,
+  inputOnFocus: true,
+  style: {
+    fg: 57,
+    bg: '#ffef72'
+  }
+});
+
+inputBar.on('submit', (text) => {
+  log(text);
+  inputBar.clearValue();
+});
+
+const log = (text) => {
+  canvas.pushLine(text);
+  screen.render();
+}
 
 screen.key(['escape', 'q', 'C-c'], function (ch, key) {
   return process.exit(0);
