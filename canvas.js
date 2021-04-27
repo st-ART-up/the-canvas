@@ -103,7 +103,6 @@ const studioButton = blessed.box({
   },
 });
 
-//COLOR PALETTE BOX - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
 const colorPalette = blessed.box({
   parent: backgroundBox,
@@ -485,3 +484,8 @@ screen.key(['escape', 'q', 'C-c'], function (ch, key) {
 });
 
 screen.render();
+
+module.exports = {
+  screen,
+  canvas
+}
