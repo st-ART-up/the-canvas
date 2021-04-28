@@ -2,12 +2,12 @@
   "name": ".",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "draw.js",
   "scripts": {
-    "test": "jest --verbose --runInBand --testLocationInResults",
+    "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
-    "start": "node index.js",
-    "start:watch": "nodemon index.js"
+    "start": "node -r dotenv/config draw.js",
+    "start:watch": "nodemon draw.js"
   },
   "jest": {
     "testEnvironment": "node"
@@ -28,6 +28,8 @@
     "axios": "^0.21.1",
     "blessed": "^0.1.81",
     "chalk": "^2.4.2",
+    "dotenv": "^8.2.0",
+    "dotenv-config": "^0.1.1",
     "fs": "*",
     "inquirer": "^8.0.0"
   }
