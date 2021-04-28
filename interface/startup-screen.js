@@ -3,6 +3,7 @@ const { randomColor } = require('../utils');
 const execSync = require('child_process').execSync;
 // printf '\e[8;50;150t'
 
+
 const screen = blessed.screen({
   smartCSR: true,
 });
@@ -64,7 +65,7 @@ const logoContainer = blessed.box({
   valign: 'middle',
   content: '{center}Logo Placeholder{/center}',
   style: {
-    fg: 'black',
+    fg: '#393B42',
     bg: 231,
     bold: true,
   },
@@ -93,7 +94,7 @@ const brushSizeLabel = blessed.box({
   tags: true,
   content: '{center}Brush Size{/center}',
   style: {
-    fg: 'black',
+    fg: '#393B42',
     bold: true,
     bg: 231,
   },
@@ -185,7 +186,7 @@ const randomBrushButton = blessed.box({
   tags: true,
   content: '{center}Random Brush{/center}',
   style: {
-    fg: 'black',
+    fg: '#393B42',
     bg: 194,
     bold: true,
     hover: {
@@ -270,7 +271,7 @@ const eraseLabel = blessed.box({
   tags: true,
   content: '{center}Eraser Size{/center}',
   style: {
-    fg: 'black',
+    fg: '#393B42',
     bold: true,
     bg: 231,
   },
@@ -348,7 +349,7 @@ const inputDirectionButton = blessed.button({
     },
     style:  {
         bold: true,
-        fg: 'black',
+        fg: '#393B42',
         bg: 194,
         hover: {
           bg: 183

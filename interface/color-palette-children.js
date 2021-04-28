@@ -11,7 +11,7 @@ const brushColorButton = blessed.box({
     valign: 'middle',
     content: '{center}Brush Color{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 194,
       hover: {
         bg: 183
@@ -33,7 +33,7 @@ const brushColorButton = blessed.box({
     valign: 'middle',
     content: '{center}Canvas Color{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 194,
       hover: {
         bg: 183
@@ -199,7 +199,7 @@ const richerRedPaintBox = blessed.box({
     content: '{center}??{/center}',
     valign: 'middle',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bold: true,
       bg: 194,
     },

@@ -20,3 +20,21 @@
 //     transparent: true
 //   }
 // })
+
+// colors: 
+// onyx/black: #393B42
+// grey/lavender: #A7B3CA
+// our white/light grey: 231
+// richer red: 160
+// coral reef: 210
+// orangina: 216
+// mellowApricot: #FFC476
+// goldenRodYellow: 227
+// smintyMint: 194
+// forestedMint: 115
+// cyan
+// cloudsBlue: 117
+// turquoise: light cyan
+// violetBlue: 57
+// lovender: 183
+// madMagenta: magenta
