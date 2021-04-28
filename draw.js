@@ -1,3 +1,4 @@
+
 module.exports = () => {
   const blessed = require('blessed');
   const {
