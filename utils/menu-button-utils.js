@@ -9,16 +9,25 @@ function clearCanvas(paint) {
     screen.render();
 }
 
-function uploadPng(png) {
+async function uploadPng() {
 // get file path from save function
-const imgurl = imgur();
+const drawingUrl = await imgur();
+console.log(drawingUrl, 'url');
 // append box with form
-const title = 'this is my fav title';
-const caption = 'my art rules buy my nft';
-const artist = 'Basquiat';
+const png = {
+    drawingUrl,
+    artist: 'Basquiat', 
+    title: 'bacon and eggs, make it vegan', 
+    caption: 'not much to eat, but it looks ok'
+}
 // form sent to db /POST 
-saveToDb({ imgurl, artist, title, caption });
+saveToDb(png);
+
+// console.log('success is ours to keep');
+}
+
 
 module.exports = {
-    clearCanvas
+    clearCanvas,
+    uploadPng
 }

@@ -21,12 +21,13 @@ const {
 const { newBrushStroke } = require('./utils/draw-utils');
 const { randomColor } = require('./utils');
 const { saveButton, uploadButton } = require('./interface/menu-bar-children');
+const execSync = require('child_process').execSync;
+const { uploadPng } = require('./utils/menu-button-utils');
 
 let drawColor = randomColor();
 let bgColor = randomColor();
 let bgSelect = false;
 //figure out how to run execSync on screen.render
-const execSync = require('child_process').execSync;
 // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
 
 canvas.on('click', function (mouse) {
@@ -40,7 +41,7 @@ saveButton.on('click', function (mouse) {
 });
 
 uploadButton.on('click', function (mouse) {
-  uploadPng(png);
+  uploadPng();
 });
 
 brushColorButton.on('click', function (mouse) {
