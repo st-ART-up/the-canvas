@@ -344,7 +344,7 @@ const inputDirectionButton = blessed.button({
   padding: {
     // top: 1,
     right: 2,
-    botton: 1,
+    bottom: 1,
     left: 1
   },
   style: {
