@@ -1,8 +1,13 @@
 {
-  "name": ".",
+  "name": "@st-art-up/test",
   "version": "1.0.0",
-  "description": "",
+  "description": "stARTup is a canvas/studio/gallery suite for creating, managing and displaying terminal-based art pieces.",
   "main": "index.js",
+  "bin": {
+    "canvas": "./draw.js",
+    "gallery": "./gallery.js"
+  },
+  "keywords": ["art", "gallery", "drawing", "terminal"],
   "scripts": {
     "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
@@ -13,8 +18,7 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "keywords": [],
-  "author": "",
+  "author": "st-art-up",
   "license": "ISC",
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",

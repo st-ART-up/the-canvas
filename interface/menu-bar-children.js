@@ -10,7 +10,7 @@ const saveButton = blessed.box({
     tags: true,
     content: '{center}save{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 227,
       hover: {
         bg: 194,
@@ -27,7 +27,7 @@ const saveButton = blessed.box({
     tags: true,
     content: '{center}upload{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 227,
       hover: {
         bg: 194
@@ -44,7 +44,7 @@ const saveButton = blessed.box({
     tags: true,
     content: '{center}clear{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 227,
       hover: {
         bg: 194,
@@ -52,16 +52,16 @@ const saveButton = blessed.box({
     },
   });
   
-  const galleryButton = blessed.box({
+  const loginButton = blessed.box({
     parent: menuBar,
     top: 'center',
     left: '72%',
     width: '10%',
     height: '60%',
     tags: true,
-    content: '{center} gallery{/center}',
+    content: '{center} login {/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 227,
       hover: {
         bg: 194,
@@ -69,16 +69,16 @@ const saveButton = blessed.box({
     },
   });
   
-  const studioButton = blessed.box({
+  const logoutButton = blessed.box({
     parent: menuBar,
     top: 'center',
     left: '87%',
     width: '10%',
     height: '60%',
     tags: true,
-    content: '{center}studio{/center}',
+    content: '{center}logout{/center}',
     style: {
-      fg: 'black',
+      fg: '#393B42',
       bg: 227,
       hover: {
         bg: 194,
