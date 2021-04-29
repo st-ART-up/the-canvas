@@ -6,12 +6,15 @@ const execSync = require('child_process').execSync;
 const {
   screen,
   canvas,
+  resizeButton,
+  resizeBox,
 } = require('./interface/startup-screen');
 const {
   saveButton,
   uploadButton,
   loginButton,
-  logoutButton } = require('./interface/menu-bar-children');
+  logoutButton,
+} = require('./interface/menu-bar-children');
 const {
   brushColorButton,
   canvasColorButton,
@@ -43,7 +46,7 @@ const { form } = require('./interface/upload-form');
 const {
   inputDirectionButton,
   inputDirectionBox,
-  inputBar
+  inputBar,
 } = require('./interface/input-bar-children');
 
 // utils imports
@@ -52,14 +55,13 @@ const { randomColor } = require('./utils');
 const imgur = require('./utils/imgur-utils');
 const auth = require('./utils/auth-utils');
 
-
 let token = '';
 let drawColor = randomColor();
 let bgSelect = false;
 let brush = {
   width: 2,
   height: 1,
-  transparent: true
+  transparent: true,
 };
 
 //figure out how to run execSync on screen.render
@@ -73,7 +75,13 @@ const setcolor = (x) => {
     drawColor = x;
     screen.render();
   }
-}
+};
+
+resizeButton.on('click', function (mouse) {
+  execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
+  resizeBox.hide();
+  screen.render();
+});
 
 // canvas clickhandler
 canvas.on('click', function (mouse) {
@@ -104,7 +112,7 @@ uploadButton.on('click', function (mouse) {
     loginWarning.on('click', function (mouse) {
       loginWarning.hide();
       screen.render();
-    })
+    });
     screen.render();
   }
 });
@@ -126,11 +134,11 @@ form.on('submit', async function (data) {
 
 loginButton.on('click', function (mouse) {
   const token = auth();
-})
+});
 
 logoutButton.on('click', function (mouse) {
   token = '';
-})
+});
 
 // color palette clickhandlers
 brushColorButton.on('click', function (mouse) {
@@ -206,24 +214,24 @@ smallBrushButton.on('click', function (mouse) {
   brush = {
     width: 2,
     height: 1,
-    transparent: true
-  }
+    transparent: true,
+  };
 });
 
 mediumBrushButton.on('click', function (mouse) {
   brush = {
     width: 6,
     height: 3,
-    transparent: true
-  }
+    transparent: true,
+  };
 });
 
 largeBrushButton.on('click', function (mouse) {
   brush = {
     width: 9,
     height: 4,
-    transparent: true
-  }
+    transparent: true,
+  };
 });
 
 //fix random brush width/size/paint multiple boxes at once
@@ -231,16 +239,16 @@ randomBrushButton.on('click', function (mouse) {
   brush = {
     width: 1,
     height: 1,
-    transparent: true
-  }
-})
+    transparent: true,
+  };
+});
 
 largeEraseButton.on('click', function (mouse) {
   brush = {
     width: 9,
     height: 4,
-    transparent: false
-  }
+    transparent: false,
+  };
   drawColor = canvas.style.bg;
 });
 
@@ -248,8 +256,8 @@ mediumEraseButton.on('click', function (mouse) {
   brush = {
     width: 6,
     height: 3,
-    transparent: false
-  }
+    transparent: false,
+  };
   drawColor = canvas.style.bg;
 });
 
@@ -258,7 +266,7 @@ smallEraseButton.on('click', function (mouse) {
     width: 2,
     height: 1,
     transparent: false,
-  }
+  };
   drawColor = canvas.style.bg;
 });
 
@@ -271,7 +279,7 @@ inputBar.on('submit', (text) => {
 const log = (text) => {
   canvas.pushLine(text);
   screen.render();
-}
+};
 
 inputDirectionButton.on('click', function (mouse) {
   inputDirectionBox.toggle();
