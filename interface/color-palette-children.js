@@ -9,7 +9,7 @@ const brushColorButton = blessed.box({
     height: 1,
     tags: true,
     valign: 'middle',
-    content: '{center}Brush Color{/center}',
+    content: '{center}brush color{/center}',
     style: {
       fg: '#393B42',
       bg: 194,
@@ -31,7 +31,7 @@ const brushColorButton = blessed.box({
     height: 1,
     tags: true,
     valign: 'middle',
-    content: '{center}Canvas Color{/center}',
+    content: '{center}canvas color{/center}',
     style: {
       fg: '#393B42',
       bg: 194,

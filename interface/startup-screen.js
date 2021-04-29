@@ -1,8 +1,4 @@
 const blessed = require('blessed');
-const { randomColor } = require('../utils');
-const execSync = require('child_process').execSync;
-// printf '\e[8;50;150t'
-
 
 const screen = blessed.screen({
   smartCSR: true,
@@ -34,12 +30,6 @@ const menuBar = blessed.box({
     bg: 216,
   },
 });
-
-//COLOR VAIRABLES 
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-// module.exports = { drawColor, bgColor, bgSelect };
 
 //COLOR PALETTE BOX - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -83,209 +73,6 @@ const toolBar = blessed.box({
   },
 });
 
-//TOOL BAR - CHILDREN
-////////////////////////////////////////////////////////////////////////////////////////
-const brushSizeLabel = blessed.box({
-  parent: toolBar,
-  top: '3%',
-  left: 'center',
-  width: 15,
-  height: 1,
-  tags: true,
-  content: '{center}Brush Size{/center}',
-  style: {
-    fg: '#393B42',
-    bold: true,
-    bg: 231,
-  },
-});
-
-const smallBrushButton = blessed.box({
-  parent: toolBar,
-  top: '12%',
-  right: 2,
-  width: 2,
-  height: 1,
-  style: {
-    bg: '#393B42',
-    hover: {
-      bg: 7,
-    },
-    focus: {
-      bg: 7,
-    },
-  },
-});
-
-// click
-// smallBrushButton.on('click', function (mouse) {
-//   let brush = {
-//     width: 2,
-//     height: 1,
-//     transparent: true
-//   }});
-
-const mediumBrushButton = blessed.box({
-  parent: toolBar,
-  top: '18%',
-  right: 2,
-  width: 6,
-  height: 3,
-  style: {
-    bg: '#393B42',
-    hover: {
-      bg: 7,
-    },
-    focus: {
-      bg: 7,
-    },
-  },
-});
-
-// click
-// mediumBrushButton.on('click', function (mouse) {
-//     let brush = {
-//       width: 6,
-//       height: 3,
-//       transparent: true
-//     }});
-
-const largeBrushButton = blessed.box({
-  parent: toolBar,
-  top: '29%',
-  right: 2,
-  width: 9,
-  height: 4,
-  style: {
-    bg: '#393B42',
-    hover: {
-      bg: 7,
-    },
-    focus: {
-      bg: 7,
-    },
-  },
-});
-
-// click
-// largeBrushButton.on('click', function (mouse) {
-//     let brush = {
-//       width: 9,
-//       height: 4,
-//       transparent: true
-//     }});
-
-// Random brush
-const randomBrushButton = blessed.box({
-  parent: toolBar,
-  top: '45%',
-  right: 2,
-  width: 12,
-  height: 5,
-  valign: 'middle',
-  tags: true,
-  content: '{center}Random Brush{/center}',
-  style: {
-    fg: '#393B42',
-    bg: 194,
-    bold: true,
-    hover: {
-      bg: 183,
-    },
-  },
-});
-
-const largeEraseButton = blessed.box({
-  parent: toolBar,
-  top: '63%',
-  right: 2,
-  width: 9,
-  height: 4,
-  style: {
-    bg: '#A7B3CA',
-    hover: {
-      bg: 117,
-    },
-    focus: {
-      bg: 117,
-    },
-  },
-});
-
-// click
-// largeEraseButton.on('click', function (mouse) {
-//     let brush = {
-//       width: 9,
-//       height: 4,
-//       transparent: false
-//     }});
-
-const mediumEraseButton = blessed.box({
-  parent: toolBar,
-  top: '77%',
-  right: 2,
-  width: 6,
-  height: 3,
-  style: {
-    bg: '#A7B3CA',
-    hover: {
-      bg: 117,
-    },
-    focus: {
-      bg: 117,
-    },
-  },
-});
-
-// click
-// mediumEraseButton.on('click', function (mouse) {
-//     let brush = {
-//       width: 6,
-//       height: 3,
-//       transparent: false
-//     }});
-
-const smallEraseButton = blessed.box({
-  parent: toolBar,
-  top: '88%',
-  right: 2,
-  width: 2,
-  height: 1,
-  style: {
-    bg: '#A7B3CA',
-    hover: {
-      bg: 117,
-    },
-    focus: {
-      bg: 117,
-    },
-  },
-});
-
-const eraseLabel = blessed.box({
-  parent: toolBar,
-  top: '97%',
-  left: 'center',
-  width: 15,
-  height: 1,
-  tags: true,
-  content: '{center}Eraser Size{/center}',
-  style: {
-    fg: '#393B42',
-    bold: true,
-    bg: 231,
-  },
-});
-
-// click
-// smallEraseButton.on('click', function (mouse) {
-//   let brush = {
-//     width: 2,
-//     height: 1,
-//     transparent: false,
-//   };
-// });
-
 //CANVAS - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
 const canvas = blessed.box({
@@ -311,10 +98,9 @@ const canvas = blessed.box({
   scrollable: true,
   scrollbar: {
     ch: 'o',
-    bg: 183
+    bg: 117,
   }
 });
-
 
 //INPUT BAR - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -330,90 +116,6 @@ const inputContainer = blessed.box({
     bg: 216,
   },
 });
-//INPUT BAR - CHILDREN
-////////////////////////////////////////////////////////////////////////////////////////
-const inputDirectionButton = blessed.button({
-  parent: inputContainer,
-  name: 'input directions',
-  content: '{center}how to\nadd text\n   ---->>{/center}',
-  top: 0,
-  left: 0,
-  width: '12%',
-  height: 3,
-  shrink: true,
-  padding: {
-    // top: 1,
-    right: 2,
-    bottom: 1,
-    left: 1
-  },
-  style: {
-    bold: true,
-    fg: '#393B42',
-    bg: 194,
-    hover: {
-      bg: 183
-    }
-  },
-  tags: true,
-  text: {
-    align: 'center',
-    valign: 'center'
-  },
-});
-
-const inputDirectionBox = blessed.box({
-  parent: inputContainer,
-  name: 'input directions explained',
-  content: '{center}use the mouse to click on the yellow input bar, use your keyboard to type! press ENTER to send your text to the canvas.. rinse + repeat. {/center}',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: 3,
-  shrink: true,
-  padding: {
-    // top: 1,
-    right: 2,
-    bottom: 1,
-    left: 8
-  },
-  style: {
-    bold: true,
-    fg: '#393B42',
-    bg: 194,
-  },
-  tags: true,
-  valign: 'middle'
-  
-});
-
-
-const inputBar = blessed.textbox({
-  parent: inputContainer,
-  // bottom: 1,
-  top: 'center',
-  left: '13%',
-  right: '96%',
-  height: 1,
-  width: '86%',
-  keys: true,
-  mouse: true,
-  inputOnFocus: true,
-  style: {
-    fg: 57,
-    bg: '#ffef72'
-  }
-});
-
-inputBar.on('submit', (text) => {
-  log(text);
-  inputBar.clearValue();
-});
-
-const log = (text) => {
-  canvas.pushLine(text);
-  screen.render();
-}
 
 screen.render();
 
@@ -428,5 +130,7 @@ module.exports = {
   screen,
   menuBar,
   colorPalette,
-  canvas
+  toolBar,
+  canvas,
+  inputContainer
 }
