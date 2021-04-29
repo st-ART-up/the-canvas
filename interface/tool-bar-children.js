@@ -8,7 +8,7 @@ const brushSizeLabel = blessed.box({
     width: 15,
     height: 1,
     tags: true,
-    content: '{center}Brush Size{/center}',
+    content: '{center}brush size{/center}',
     style: {
       fg: '#393B42',
       bold: true,
@@ -75,7 +75,7 @@ const brushSizeLabel = blessed.box({
     height: 5,
     valign: 'middle',
     tags: true,
-    content: '{center}Random Brush{/center}',
+    content: '{center}random brush{/center}',
     style: {
       fg: '#393B42',
       bg: 194,
@@ -144,7 +144,7 @@ const brushSizeLabel = blessed.box({
     width: 15,
     height: 1,
     tags: true,
-    content: '{center}Eraser Size{/center}',
+    content: '{center}eraser size{/center}',
     style: {
       fg: '#393B42',
       bold: true,

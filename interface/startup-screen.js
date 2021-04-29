@@ -1,5 +1,4 @@
 const blessed = require('blessed');
-const execSync = require('child_process').execSync;
 
 const screen = blessed.screen({
   smartCSR: true,
