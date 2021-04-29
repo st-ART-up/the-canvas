@@ -7,8 +7,8 @@ const {
   screen,
   canvas,
 } = require('./interface/startup-screen');
-const { 
-  saveButton, 
+const {
+  saveButton,
   uploadButton,
   loginButton,
   logoutButton } = require('./interface/menu-bar-children');
@@ -20,7 +20,7 @@ const {
   oranginaPaintBox,
   mellowApricotPaintBox,
   goldenRodYellowPaintBox,
-  smintyMintPaintBox,
+  whiteStallionPaintBox,
   forestedMintPaintBox,
   sighAnneCyanPaintBox,
   cloudsBluePaintBox,
@@ -165,8 +165,8 @@ goldenRodYellowPaintBox.on('click', function (mouse) {
   setcolor(227);
 });
 
-smintyMintPaintBox.on('click', function (mouse) {
-  setcolor(194);
+whiteStallionPaintBox.on('click', function (mouse) {
+  setcolor(231);
 });
 
 forestedMintPaintBox.on('click', function (mouse) {
@@ -276,7 +276,7 @@ const log = (text) => {
 inputDirectionButton.on('click', function (mouse) {
   inputDirectionBox.toggle();
   inputBar.toggle();
-    screen.render();
+  screen.render();
 });
 
 // screen.key(['u'], function (ch, key){

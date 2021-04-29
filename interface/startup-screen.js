@@ -40,7 +40,7 @@ const colorPalette = blessed.box({
   width: '88%',
   height: '14%',
   style: {
-    bg: 231,
+    bg: 255,
   },
 });
 
