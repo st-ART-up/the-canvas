@@ -1,7 +1,8 @@
 const { default: axios } = require('axios');
 const displayImage = require('display-image');
 
-const URL = 'https://st-art-up.herokuapp.com/api/v1/drawings';
+// const URL = 'http://localhost:7890/api/v1';
+const URL = 'https://st-art-up.herokuapp.com/api/v1';
 
 const getAllImages = async () => {
   const allImages = await axios.get(`${URL}/2`);
@@ -40,11 +41,11 @@ const logUserIn = async (token) => {
   // console.log(token);
   await axios({
     method: 'post',
-    url: `https://st-art-up.herokuapp.com/api/v1/artists`,
+    url: `${URL}/artists`,
     data: {
       token,
     },
-  })
+  });
   // displayImage
   //   .fromURL(req.data.avatar)
   // .then((image) => console.log(image, 'Press arrows keys to continue'));

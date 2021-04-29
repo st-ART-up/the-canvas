@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 module.exports = () => {
   return new Promise(resolve => {
     const blessed = require('blessed');
@@ -52,6 +52,11 @@ module.exports = () => {
       });
       // screen.render();
     });
+
+    // screen.key(['u'], function (ch, key){
+    //   undoButton.deleteLine(i);
+    //   screen.render();
+    // });
 
     uploadButton.on('click', function (mouse) {
       uploadPng();
