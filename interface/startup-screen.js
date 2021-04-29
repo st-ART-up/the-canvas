@@ -1,4 +1,6 @@
+const { blockStatement } = require('@babel/types');
 const blessed = require('blessed');
+const { width } = require('window-size');
 
 const screen = blessed.screen({
   smartCSR: true,
@@ -14,6 +16,32 @@ const backgroundBox = blessed.box({
   style: {
     fg: 231,
     bg: 231,
+  },
+});
+
+const resizeBox = blessed.box({
+  parent: screen,
+  top: 'center',
+  left: 'center',
+  width: '60%',
+  height: '60%',
+  content: 'click ok to resize your terminal window for optimal view',
+  style: {
+    bg: 183,
+    fg: '#393B42',
+  },
+});
+
+const resizeButton = blessed.box({
+  parent: resizeBox,
+  bottom: 2,
+  left: 'center',
+  width: 7,
+  height: 3,
+  content: 'OK!',
+  style: {
+    bg: 194,
+    fg: '#393B42',
   },
 });
 
@@ -40,7 +68,7 @@ const colorPalette = blessed.box({
   width: '88%',
   height: '14%',
   style: {
-    bg: 231,
+    bg: 255,
   },
 });
 
@@ -99,7 +127,7 @@ const canvas = blessed.box({
   scrollbar: {
     ch: 'o',
     bg: 117,
-  }
+  },
 });
 
 //INPUT BAR - PARENT
@@ -125,5 +153,7 @@ module.exports = {
   colorPalette,
   toolBar,
   canvas,
-  inputContainer
-}
+  inputContainer,
+  resizeButton,
+  resizeBox,
+};
