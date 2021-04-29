@@ -19,7 +19,7 @@ const {
 } = require('./utils/gallery-utils');
 
 const stARTupSkeleton = (newPrompt) => {
-  inquirer
+  return inquirer
     .prompt({
       type: newPrompt.type,
       message: newPrompt.message,
@@ -38,8 +38,7 @@ const stARTupSkeleton = (newPrompt) => {
           console.log('See you later!');
           break;
         case 'Visit the canvas':
-          draw();
-          break;
+          return draw();
         case 'Visit your studio':
           stARTupSkeleton(studioPrompt);
           break;
@@ -53,16 +52,16 @@ const stARTupSkeleton = (newPrompt) => {
           console.log('Goes to a existing drawing to change it');
           break;
         case 'View your drawings':
-          getUserDrawings().then(stARTupSkeleton(studioPrompt));
+          getUserDrawings().then(() => stARTupSkeleton(studioPrompt));
           break;
         case 'Delete a drawing':
           console.log('Goes to delete a drawing');
           break;
         case 'View all drawings':
-          getAllImages().then(stARTupSkeleton(anonymousGalleryPrompt));
+          getAllImages().then(() => stARTupSkeleton(anonymousGalleryPrompt));
           break;
         case 'View random drawings':
-          getRandomImage().then(stARTupSkeleton(anonymousGalleryPrompt));
+          getRandomImage().then(() => stARTupSkeleton(anonymousGalleryPrompt));
           break;
       }
     });
@@ -74,8 +73,8 @@ const logInSkeleton = () => {
   inquirer.prompt(loginPrompt).then((response) => {
     if (response.githubAuth === true) {
       auth()
-        .then((token) => logUserIn(token))
-        .then(stARTupSkeleton(canvasStudioGalleryPrompt));
+        .then((token) => console.log(token))
+      // .then(stARTupSkeleton(canvasStudioGalleryPrompt));
     } else {
       console.log('Please create a github account to log in to stARTup');
     }
