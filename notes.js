@@ -38,3 +38,4 @@
 // violetBlue: 57
 // lovender: 183
 // madMagenta: magenta
+// light grey: 255
