@@ -5,7 +5,7 @@ const open = require('open');
 
 const receiveCode = async () => {
   return new Promise((resolve) => {
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3232;
     const server = app.listen(PORT, () => {
       // eslint-disable-next-line no-console
       console.log(`Started on ${PORT}`);
@@ -44,8 +44,8 @@ const exchangeCodeForToken = async (code) => {
 };
 
 module.exports = async () => {
-    const code = await receiveCode();
-    const token = await exchangeCodeForToken(code);
-    return token;
-  };
-    
+  const code = await receiveCode();
+  const token = await exchangeCodeForToken(code);
+  return token;
+};
+
