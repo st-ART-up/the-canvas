@@ -1,8 +1,5 @@
 const blessed = require('blessed');
-const { randomColor } = require('../utils');
 const execSync = require('child_process').execSync;
-// printf '\e[8;50;150t'
-
 
 const screen = blessed.screen({
   smartCSR: true,
@@ -102,7 +99,7 @@ const canvas = blessed.box({
   scrollable: true,
   scrollbar: {
     ch: 'o',
-    bg: 183
+    bg: 117,
   }
 });
 
@@ -120,6 +117,7 @@ const inputContainer = blessed.box({
     bg: 216,
   },
 });
+
 //INPUT BAR - CHILDREN
 ////////////////////////////////////////////////////////////////////////////////////////
 const inputDirectionButton = blessed.button({
@@ -188,5 +186,6 @@ module.exports = {
   menuBar,
   colorPalette,
   toolBar,
-  canvas
+  canvas,
+  inputContainer
 }

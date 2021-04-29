@@ -55,6 +55,16 @@ let brush = {
 //figure out how to run execSync on screen.render
 // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
 
+const setcolor = (x) => {
+  if (bgSelect) {
+    canvas.style.bg = x;
+    screen.render();
+  } else {
+    drawColor = x;
+    screen.render();
+  }
+}
+
 canvas.on('click', function (mouse) {
   newBrushStroke(mouse, drawColor, brush);
 });
@@ -89,143 +99,59 @@ canvasColorButton.on('click', function (mouse) {
 });
 
 richerRedPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 160;
-    screen.render();
-  } else {
-    drawColor = 160;
-    screen.render();
-  }
+  setcolor(160);
 });
 
 coralReefPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 210;
-    screen.render();
-  } else {
-    drawColor = 210;
-    screen.render();
-  }
+  setcolor(210);
 });
 
 oranginaPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 216;
-    screen.render();
-  } else {
-    drawColor = 216;
-    screen.render();
-  }
+  setcolor(216);
 });
 
 mellowApricotPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = '#FFC476';
-    screen.render();
-  } else {
-    drawColor = '#FFC476';
-    screen.render();
-  }
+  setcolor('#FFC476');
 });
 
 goldenRodYellowPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 227;
-    screen.render();
-  } else {
-    drawColor = 227;
-    screen.render();
-  }
+  setcolor(227);
 });
 
 smintyMintPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 194;
-    screen.render();
-  } else {
-    drawColor = 194;
-    screen.render();
-  }
+  setcolor(194);
 });
 
 forestedMintPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 115;
-    screen.render();
-  } else {
-    drawColor = 115;
-    screen.render();
-  }
+  setcolor(115);
 });
 
 sighAnneCyanPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 'cyan';
-    screen.render();
-  } else {
-    drawColor = 'cyan';
-    screen.render();
-  }
+  setcolor('cyan');
 });
 
 cloudsBluePaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 117;
-    screen.render();
-  } else {
-    drawColor = 117;
-    screen.render();
-  }
+  setcolor(117);
 });
 
 turquoiseBluePaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 'light cyan';
-    screen.render();
-  } else {
-    drawColor = 'light cyan';
-    screen.render();
-  }
+  setcolor('light cyan');
 });
 
 violetBluePaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 57;
-    screen.render();
-  } else {
-    drawColor = 57;
-    screen.render();
-  }
+  setcolor(57);
 });
 
 lovenderPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 183;
-    screen.render();
-  } else {
-    drawColor = 183;
-    screen.render();
-  }
+  setcolor(183);
 });
 
 madMagentaPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = 'magenta';
-    screen.render();
-  } else {
-    drawColor = 'magenta';
-    screen.render();
-  }
+  setcolor('magenta');
 });
 
 randoPaintBox.on('click', function (mouse) {
-  if (bgSelect) {
-    canvas.style.bg = randomColor();
-    screen.render();
-  } else {
-    drawColor = randomColor();
-    screen.render();
-  }
+  setcolor(randomColor());
 });
 
 smallBrushButton.on('click', function (mouse) {
@@ -287,6 +213,8 @@ smallEraseButton.on('click', function (mouse) {
   }
   drawColor = canvas.style.bg;
 });
+
+// input click handlers go here when complete
 
 screen.key(['escape'], function (ch, key) {
   screen.destroy();
