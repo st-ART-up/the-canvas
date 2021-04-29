@@ -118,67 +118,6 @@ const inputContainer = blessed.box({
   },
 });
 
-//INPUT BAR - CHILDREN
-////////////////////////////////////////////////////////////////////////////////////////
-const inputDirectionButton = blessed.button({
-  parent: inputContainer,
-  name: 'text directions',
-  content: '{center}how to\nadd text\n   ---->>{/center}',
-  top: 0,
-  left: 0,
-  width: '12%',
-  height: 3,
-  shrink: true,
-  padding: {
-    // top: 1,
-    right: 2,
-    botton: 1,
-    left: 1
-  },
-  style: {
-    bold: true,
-    fg: '#393B42',
-    bg: 194,
-    hover: {
-      bg: 183
-    }
-  },
-  tags: true,
-  text: {
-    align: 'center',
-    valign: 'center'
-  },
-});
-
-// const textDirectionBox = blessed.
-
-const inputBar = blessed.textbox({
-  parent: inputContainer,
-  // bottom: 1,
-  top: 'center',
-  left: '13%',
-  right: '96%',
-  height: 1,
-  width: '86%',
-  keys: true,
-  mouse: true,
-  inputOnFocus: true,
-  style: {
-    fg: 57,
-    bg: '#ffef72'
-  }
-});
-
-inputBar.on('submit', (text) => {
-  log(text);
-  inputBar.clearValue();
-});
-
-const log = (text) => {
-  canvas.pushLine(text);
-  screen.render();
-}
-
 screen.render();
 
 module.exports = {

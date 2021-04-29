@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const blessed = require('blessed');
 const execSync = require('child_process').execSync;
 
@@ -8,7 +7,11 @@ const {
   screen,
   canvas,
 } = require('./interface/startup-screen');
-const { saveButton, uploadButton } = require('./interface/menu-bar-children');
+const { 
+  saveButton, 
+  uploadButton,
+  loginButton,
+  logoutButton } = require('./interface/menu-bar-children');
 const {
   brushColorButton,
   canvasColorButton,
@@ -28,7 +31,6 @@ const {
   randoPaintBox,
 } = require('./interface/color-palette-children');
 const {
-  brushSizeLabel,
   smallBrushButton,
   mediumBrushButton,
   largeBrushButton,
@@ -36,22 +38,30 @@ const {
   largeEraseButton,
   mediumEraseButton,
   smallEraseButton,
-  eraseLabel
 } = require('./interface/tool-bar-children');
+const { form } = require('./interface/upload-form');
+const {
+  inputDirectionButton,
+  inputDirectionBox,
+  inputBar
+} = require('./interface/input-bar-children');
 
 // utils imports
 const { newBrushStroke } = require('./utils/draw-utils');
 const { randomColor } = require('./utils');
-const { uploadPng } = require('./utils/menu-button-utils');
+const imgur = require('./utils/imgur-utils');
+const auth = require('./utils/auth-utils');
 
+
+let token = '';
 let drawColor = randomColor();
-let bgColor = 231;
 let bgSelect = false;
 let brush = {
   width: 2,
   height: 1,
   transparent: true
 };
+
 //figure out how to run execSync on screen.render
 // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
 
@@ -65,10 +75,12 @@ const setcolor = (x) => {
   }
 }
 
+// canvas clickhandler
 canvas.on('click', function (mouse) {
   newBrushStroke(mouse, drawColor, brush);
 });
 
+// menu bar clickhandlers
 saveButton.on('click', function (mouse) {
   // the default is 'buffer'
   const output = execSync('screencapture -i ./photos/yourawesomeart.png', {
@@ -77,15 +89,50 @@ saveButton.on('click', function (mouse) {
   // screen.render();
 });
 
-// screen.key(['u'], function (ch, key){
-//   undoButton.deleteLine(i);
-//   screen.render();
-// });
-
 uploadButton.on('click', function (mouse) {
-  uploadPng();
+  if (token) {
+    form.show();
+    screen.render();
+  } else {
+    const loginWarning = blessed.box({
+      parent: screen,
+      top: 'center',
+      left: 'center',
+      bg: 'red',
+      content: 'Please login to upload your art.',
+    });
+    loginWarning.on('click', function (mouse) {
+      loginWarning.hide();
+      screen.render();
+    })
+    screen.render();
+  }
 });
 
+form.on('submit', async function (data) {
+  const drawingUrl = await imgur();
+  // append box with form
+  const png = {
+    drawingUrl: drawingUrl,
+    token: token,
+    title: data.title,
+    caption: data.caption,
+  };
+  // form sent to db /POST
+  saveToDb(png);
+  form.hide();
+  screen.render();
+});
+
+loginButton.on('click', function (mouse) {
+  const token = auth();
+})
+
+logoutButton.on('click', function (mouse) {
+  token = '';
+})
+
+// color palette clickhandlers
 brushColorButton.on('click', function (mouse) {
   bgSelect = false;
   brushColorButton.focus();
@@ -154,6 +201,7 @@ randoPaintBox.on('click', function (mouse) {
   setcolor(randomColor());
 });
 
+// toolbar clickhandlers
 smallBrushButton.on('click', function (mouse) {
   brush = {
     width: 2,
@@ -214,7 +262,27 @@ smallEraseButton.on('click', function (mouse) {
   drawColor = canvas.style.bg;
 });
 
-// input click handlers go here when complete
+// input clickhandlers and eventhandler
+inputBar.on('submit', (text) => {
+  log(text);
+  inputBar.clearValue();
+});
+
+const log = (text) => {
+  canvas.pushLine(text);
+  screen.render();
+}
+
+inputDirectionButton.on('click', function (mouse) {
+  inputDirectionBox.toggle();
+  inputBar.toggle();
+    screen.render();
+});
+
+// screen.key(['u'], function (ch, key){
+//   undoButton.deleteLine(i);
+//   screen.render();
+// });
 
 screen.key(['escape'], function (ch, key) {
   screen.destroy();
