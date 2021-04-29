@@ -334,7 +334,7 @@ const inputContainer = blessed.box({
 ////////////////////////////////////////////////////////////////////////////////////////
 const inputDirectionButton = blessed.button({
   parent: inputContainer,
-  name: 'text directions',
+  name: 'input directions',
   content: '{center}how to\nadd text\n   ---->>{/center}',
   top: 0,
   left: 0,
@@ -362,7 +362,31 @@ const inputDirectionButton = blessed.button({
   },
 });
 
-// const textDirectionBox = blessed.
+const inputDirectionBox = blessed.box({
+  parent: inputContainer,
+  name: 'input directions explained',
+  content: '{center}use the mouse to click on the yellow input bar, use your keyboard to type! press ENTER to send your text to the canvas.. rinse + repeat. {/center}',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: 3,
+  shrink: true,
+  padding: {
+    // top: 1,
+    right: 2,
+    bottom: 1,
+    left: 8
+  },
+  style: {
+    bold: true,
+    fg: '#393B42',
+    bg: 194,
+  },
+  tags: true,
+  valign: 'middle'
+  
+});
+
 
 const inputBar = blessed.textbox({
   parent: inputContainer,
@@ -392,6 +416,13 @@ const log = (text) => {
 }
 
 screen.render();
+
+inputDirectionBox.hide();
+inputDirectionButton.on('click', function (mouse) {
+  inputDirectionBox.toggle();
+  inputBar.toggle();
+    screen.render();
+  });
 
 module.exports = {
   screen,
