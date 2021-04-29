@@ -1,224 +1,300 @@
 #!/usr/bin/env node
-module.exports = () => {
-  return new Promise(resolve => {
-    const blessed = require('blessed');
-    const {
-      screen,
-      canvas,
-      colorPalette,
-    } = require('./interface/startup-screen');
-    const {
-      brushColorButton,
-      canvasColorButton,
-      richerRedPaintBox,
-      coralReefPaintBox,
-      oranginaPaintBox,
-      mellowApricotPaintBox,
-      goldenRodYellowPaintBox,
-      smintyMintPaintBox,
-      forestedMintPaintBox,
-      sighAnneCyanPaintBox,
-      cloudsBluePaintBox,
-      turquoiseBluePaintBox,
-      violetBluePaintBox,
-      lovenderPaintBox,
-      madMagentaPaintBox,
-      randoPaintBox,
-    } = require('./interface/color-palette-children');
-    const { newBrushStroke } = require('./utils/draw-utils');
-    const { randomColor } = require('./utils');
-    const { saveButton, uploadButton } = require('./interface/menu-bar-children');
-    const execSync = require('child_process').execSync;
-    const { uploadPng } = require('./utils/menu-button-utils');
+const blessed = require('blessed');
+const execSync = require('child_process').execSync;
 
-    let drawColor = randomColor();
-    let bgColor = 231;
-    let bgSelect = false;
-    //figure out how to run execSync on screen.render
-    // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
+// blessed element imports
+const {
+  screen,
+  canvas,
+  resizeButton,
+  resizeBox,
+} = require('./interface/startup-screen');
+const {
+  saveButton,
+  uploadButton,
+  loginButton,
+  logoutButton,
+} = require('./interface/menu-bar-children');
+const {
+  brushColorButton,
+  canvasColorButton,
+  richerRedPaintBox,
+  coralReefPaintBox,
+  oranginaPaintBox,
+  mellowApricotPaintBox,
+  goldenRodYellowPaintBox,
+  whiteStallionPaintBox,
+  forestedMintPaintBox,
+  sighAnneCyanPaintBox,
+  cloudsBluePaintBox,
+  turquoiseBluePaintBox,
+  violetBluePaintBox,
+  lovenderPaintBox,
+  madMagentaPaintBox,
+  randoPaintBox,
+} = require('./interface/color-palette-children');
+const {
+  smallBrushButton,
+  mediumBrushButton,
+  largeBrushButton,
+  randomBrushButton,
+  largeEraseButton,
+  mediumEraseButton,
+  smallEraseButton,
+} = require('./interface/tool-bar-children');
+const { form } = require('./interface/upload-form');
+const {
+  inputDirectionButton,
+  inputDirectionBox,
+  inputBar,
+} = require('./interface/input-bar-children');
 
-    canvas.on('click', function (mouse) {
-      newBrushStroke(mouse, drawColor, {
-        width: 2,
-        height: 1,
-        transparent: false,
-      });
-    });
+// utils imports
+const { newBrushStroke } = require('./utils/draw-utils');
+const { randomColor } = require('./utils');
+const imgur = require('./utils/imgur-utils');
+const auth = require('./utils/auth-utils');
 
-    saveButton.on('click', function (mouse) {
-      // the default is 'buffer'
-      const output = execSync('screencapture -i ./photos/yourawesomeart.png', {
-        encoding: 'utf-8',
-      });
-      // screen.render();
-    });
-
-    // screen.key(['u'], function (ch, key){
-    //   undoButton.deleteLine(i);
-    //   screen.render();
-    // });
-
-    uploadButton.on('click', function (mouse) {
-      uploadPng();
-    });
-
-    brushColorButton.on('click', function (mouse) {
-      bgSelect = false;
-      brushColorButton.focus();
-      screen.render();
-    });
-
-    canvasColorButton.on('click', function (mouse) {
-      bgSelect = true;
-      canvasColorButton.focus();
-      screen.render();
-    });
-
-    richerRedPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 160;
-        screen.render();
-      } else {
-        drawColor = 160;
-        screen.render();
-      }
-    });
-
-    coralReefPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 210;
-        screen.render();
-      } else {
-        drawColor = 210;
-        screen.render();
-      }
-    });
-
-    oranginaPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 216;
-        screen.render();
-      } else {
-        drawColor = 216;
-        screen.render();
-      }
-    });
-
-    mellowApricotPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = '#FFC476';
-        screen.render();
-      } else {
-        drawColor = '#FFC476';
-        screen.render();
-      }
-    });
-
-    goldenRodYellowPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 227;
-        screen.render();
-      } else {
-        drawColor = 227;
-        screen.render();
-      }
-    });
-
-    smintyMintPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 194;
-        screen.render();
-      } else {
-        drawColor = 194;
-        screen.render();
-      }
-    });
-
-    forestedMintPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 115;
-        screen.render();
-      } else {
-        drawColor = 115;
-        screen.render();
-      }
-    });
-
-    sighAnneCyanPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 'cyan';
-        screen.render();
-      } else {
-        drawColor = 'cyan';
-        screen.render();
-      }
-    });
-
-    cloudsBluePaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 117;
-        screen.render();
-      } else {
-        drawColor = 117;
-        screen.render();
-      }
-    });
-
-    turquoiseBluePaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 'light cyan';
-        screen.render();
-      } else {
-        drawColor = 'light cyan';
-        screen.render();
-      }
-    });
-
-    violetBluePaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 57;
-        screen.render();
-      } else {
-        drawColor = 57;
-        screen.render();
-      }
-    });
-
-    lovenderPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 183;
-        screen.render();
-      } else {
-        drawColor = 183;
-        screen.render();
-      }
-    });
-
-    madMagentaPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = 'magenta';
-        screen.render();
-      } else {
-        drawColor = 'magenta';
-        screen.render();
-      }
-    });
-
-    randoPaintBox.on('click', function (mouse) {
-      if (bgSelect) {
-        canvas.style.bg = randomColor();
-        screen.render();
-      } else {
-        drawColor = randomColor();
-        screen.render();
-      }
-    });
-
-    screen.key(['escape'], function (ch, key) {
-      screen.destroy();
-      resolve();
-    });
-
-    screen.render();
-  })
+let token = '';
+let drawColor = randomColor();
+let bgSelect = false;
+let brush = {
+  width: 2,
+  height: 1,
+  transparent: true,
 };
+
+//figure out how to run execSync on screen.render
+// execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
+
+const setcolor = (x) => {
+  if (bgSelect) {
+    canvas.style.bg = x;
+    screen.render();
+  } else {
+    drawColor = x;
+    screen.render();
+  }
+};
+
+resizeButton.on('click', function (mouse) {
+  execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
+  resizeBox.hide();
+  screen.render();
+});
+
+// canvas clickhandler
+canvas.on('click', function (mouse) {
+  newBrushStroke(mouse, drawColor, brush);
+});
+
+// menu bar clickhandlers
+saveButton.on('click', function (mouse) {
+  // the default is 'buffer'
+  const output = execSync('screencapture -i ./photos/yourawesomeart.png', {
+    encoding: 'utf-8',
+  });
+  // screen.render();
+});
+
+uploadButton.on('click', function (mouse) {
+  if (token) {
+    form.show();
+    screen.render();
+  } else {
+    const loginWarning = blessed.box({
+      parent: screen,
+      top: 'center',
+      left: 'center',
+      bg: 'red',
+      content: 'Please login to upload your art.',
+    });
+    loginWarning.on('click', function (mouse) {
+      loginWarning.hide();
+      screen.render();
+    });
+    screen.render();
+  }
+});
+
+form.on('submit', async function (data) {
+  const drawingUrl = await imgur();
+  // append box with form
+  const png = {
+    drawingUrl: drawingUrl,
+    token: token,
+    title: data.title,
+    caption: data.caption,
+  };
+  // form sent to db /POST
+  saveToDb(png);
+  form.hide();
+  screen.render();
+});
+
+loginButton.on('click', function (mouse) {
+  const token = auth();
+});
+
+logoutButton.on('click', function (mouse) {
+  token = '';
+});
+
+// color palette clickhandlers
+brushColorButton.on('click', function (mouse) {
+  bgSelect = false;
+  brushColorButton.focus();
+  screen.render();
+});
+
+canvasColorButton.on('click', function (mouse) {
+  bgSelect = true;
+  canvasColorButton.focus();
+  screen.render();
+});
+
+richerRedPaintBox.on('click', function (mouse) {
+  setcolor(160);
+});
+
+coralReefPaintBox.on('click', function (mouse) {
+  setcolor(210);
+});
+
+oranginaPaintBox.on('click', function (mouse) {
+  setcolor(216);
+});
+
+mellowApricotPaintBox.on('click', function (mouse) {
+  setcolor('#FFC476');
+});
+
+goldenRodYellowPaintBox.on('click', function (mouse) {
+  setcolor(227);
+});
+
+whiteStallionPaintBox.on('click', function (mouse) {
+  setcolor(231);
+});
+
+forestedMintPaintBox.on('click', function (mouse) {
+  setcolor(115);
+});
+
+sighAnneCyanPaintBox.on('click', function (mouse) {
+  setcolor('cyan');
+});
+
+cloudsBluePaintBox.on('click', function (mouse) {
+  setcolor(117);
+});
+
+turquoiseBluePaintBox.on('click', function (mouse) {
+  setcolor('light cyan');
+});
+
+violetBluePaintBox.on('click', function (mouse) {
+  setcolor(57);
+});
+
+lovenderPaintBox.on('click', function (mouse) {
+  setcolor(183);
+});
+
+madMagentaPaintBox.on('click', function (mouse) {
+  setcolor('magenta');
+});
+
+randoPaintBox.on('click', function (mouse) {
+  setcolor(randomColor());
+});
+
+// toolbar clickhandlers
+smallBrushButton.on('click', function (mouse) {
+  brush = {
+    width: 2,
+    height: 1,
+    transparent: true,
+  };
+});
+
+mediumBrushButton.on('click', function (mouse) {
+  brush = {
+    width: 6,
+    height: 3,
+    transparent: true,
+  };
+});
+
+largeBrushButton.on('click', function (mouse) {
+  brush = {
+    width: 9,
+    height: 4,
+    transparent: true,
+  };
+});
+
+//fix random brush width/size/paint multiple boxes at once
+randomBrushButton.on('click', function (mouse) {
+  brush = {
+    width: 1,
+    height: 1,
+    transparent: true,
+  };
+});
+
+largeEraseButton.on('click', function (mouse) {
+  brush = {
+    width: 9,
+    height: 4,
+    transparent: false,
+  };
+  drawColor = canvas.style.bg;
+});
+
+mediumEraseButton.on('click', function (mouse) {
+  brush = {
+    width: 6,
+    height: 3,
+    transparent: false,
+  };
+  drawColor = canvas.style.bg;
+});
+
+smallEraseButton.on('click', function (mouse) {
+  brush = {
+    width: 2,
+    height: 1,
+    transparent: false,
+  };
+  drawColor = canvas.style.bg;
+});
+
+// input clickhandlers and eventhandler
+inputBar.on('submit', (text) => {
+  log(text);
+  inputBar.clearValue();
+});
+
+const log = (text) => {
+  canvas.pushLine(text);
+  screen.render();
+};
+
+inputDirectionButton.on('click', function (mouse) {
+  inputDirectionBox.toggle();
+  inputBar.toggle();
+  screen.render();
+});
+
+// screen.key(['u'], function (ch, key){
+//   undoButton.deleteLine(i);
+//   screen.render();
+// });
+
+screen.key(['escape'], function (ch, key) {
+  screen.destroy();
+  resolve();
+});
+
+screen.render();

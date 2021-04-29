@@ -7,7 +7,12 @@
     "canvas": "./draw.js",
     "gallery": "./gallery.js"
   },
-  "keywords": ["art", "gallery", "drawing", "terminal"],
+  "keywords": [
+    "art",
+    "gallery",
+    "drawing",
+    "terminal"
+  ],
   "scripts": {
     "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
@@ -32,6 +37,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "blessed": "^0.1.81",
+    "cfonts": "^2.9.1",
     "chalk": "^2.4.2",
     "display-image": "^1.1.0",
     "dotenv": "^8.2.0",

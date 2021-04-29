@@ -90,6 +90,6 @@ const saveButton = blessed.box({
       saveButton,
       uploadButton,
       clearButton,
-      galleryButton,
-      studioButton
+      loginButton,
+      logoutButton
   }
