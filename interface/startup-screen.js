@@ -349,7 +349,7 @@ const inputDirectionButton = blessed.button({
   },
   style: {
     bold: true,
-    fg: 'black',
+    fg: '#393B42',
     bg: 194,
     hover: {
       bg: 183
