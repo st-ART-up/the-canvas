@@ -37,16 +37,17 @@ const deleteADrawing = async () => {
   const deletedDrawing = await axios.delete();
 };
 const logUserIn = async (token) => {
+  // console.log(token);
   await axios({
     method: 'post',
     url: `https://st-art-up.herokuapp.com/api/v1/artists`,
     data: {
       token,
     },
-  });
-  displayImage
-    .fromURL(req.data.avatar)
-    .then((image) => console.log(image, 'Press arrows keys to continue'));
+  })
+  // displayImage
+  //   .fromURL(req.data.avatar)
+  // .then((image) => console.log(image, 'Press arrows keys to continue'));
 };
 
 module.exports = {

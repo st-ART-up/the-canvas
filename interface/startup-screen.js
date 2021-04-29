@@ -334,32 +334,32 @@ const inputContainer = blessed.box({
 ////////////////////////////////////////////////////////////////////////////////////////
 const inputDirectionButton = blessed.button({
   parent: inputContainer,
-    name: 'text directions',
-    content: '{center}how to\nadd text\n   ---->>{/center}',
-    top: 0,
-    left: 0,
-    width: '12%',
-    height: 3,
-    shrink: true,
-    padding: {
-        // top: 1,
-        right: 2,
-        botton: 1,
-        left: 1
-    },
-    style:  {
-        bold: true,
-        fg: '#393B42',
-        bg: 194,
-        hover: {
-          bg: 183
-        }
-    },
-    tags: true,
-    text: {
-        align: 'center',
-        valign: 'center'
-    },
+  name: 'text directions',
+  content: '{center}how to\nadd text\n   ---->>{/center}',
+  top: 0,
+  left: 0,
+  width: '12%',
+  height: 3,
+  shrink: true,
+  padding: {
+    // top: 1,
+    right: 2,
+    botton: 1,
+    left: 1
+  },
+  style: {
+    bold: true,
+    fg: 'black',
+    bg: 194,
+    hover: {
+      bg: 183
+    }
+  },
+  tags: true,
+  text: {
+    align: 'center',
+    valign: 'center'
+  },
 });
 
 // const textDirectionBox = blessed.
@@ -390,10 +390,6 @@ const log = (text) => {
   canvas.pushLine(text);
   screen.render();
 }
-
-screen.key(['escape', 'q', 'C-c'], function (ch, key) {
-  return process.exit(0);
-});
 
 screen.render();
 
