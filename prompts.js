@@ -1,31 +1,26 @@
 const welcomePrompt = {
   type: 'list',
-  message: 'Welcome to the gallery.',
+  message: 'Welcome to the Gallery!!!!!!!',
   name: 'option',
-  choices: ['show me the art!', 'log in to edit my drawings', 'Exit'],
+  choices: ['Show me the art!', 'Log in to edit my drawings', 'Exit'],
 };
 
 const userPrompt = {
   type: 'list',
-  message: 'Artist page',
+  message: 'Welcome to the Studio!!!!!!',
   name: 'option',
   choices: [
-    'view my drawings',
-    'delete a drawing by its ID',
+    'View my drawings',
+    'Delete a drawing by its ID',
     'Go back to main menu \n',
   ],
 };
 
 const galleryPrompt = {
   type: 'list',
-  message: 'Welcome to the Gallery!',
+  message: 'View finder',
   name: 'option',
-  choices: [
-    'View all drawings',
-    'View random drawings',
-    'View image carousel',
-    'Go back to main menu',
-  ],
+  choices: ['View all drawings', 'View image carousel', 'Go back to main menu'],
 };
 
 const deletePrompt = {
@@ -36,8 +31,14 @@ const deletePrompt = {
 
 const loginPrompt = {
   type: 'confirm',
-  message: 'log in with your github account?',
+  message: 'Log in with your Github account?',
   name: 'githubAuth',
+};
+
+const exitPrompt = {
+  type: 'confirm',
+  message: 'Take another spin on the carousel?',
+  name: 'exit',
 };
 
 module.exports = {
@@ -46,4 +47,5 @@ module.exports = {
   deletePrompt,
   loginPrompt,
   userPrompt,
+  exitPrompt,
 };
