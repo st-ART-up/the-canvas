@@ -17,6 +17,7 @@ const receiveCode = async () => {
 
     // redirect URI with temp code set as query param
     app.use('/api/v1/auth', (req) => {
+      res.sendFile(`${__dirname}/exitAuth.html`);
       resolve(req.query.code);
       server.close();
     });
