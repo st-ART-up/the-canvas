@@ -1,10 +1,8 @@
 const axios = require('axios');
-const fs = require('fs').promises;
 
 const URL = 'https://st-art-up.herokuapp.com/api/v1';
-// const URL = 'http://localhost:7890/api/v1'
 
-module.exports = async (form) => {
+async function saveToDb(form) {
   return axios({
     url: `${URL}/drawings`,
     method: 'POST',
@@ -12,3 +10,5 @@ module.exports = async (form) => {
     data: form,
   });
 };
+
+module.exports = { saveToDb };
