@@ -7,8 +7,8 @@ module.exports = () => {
   const {
     screen,
     canvas,
-    resizeButton,
-    resizeBox,
+    welcomeButton,
+    welcomeBox,
   } = require('./interface/startup-screen');
   const {
     saveButton,
@@ -51,7 +51,7 @@ module.exports = () => {
   } = require('./interface/input-bar-children');
 
   // utils imports
-  const { newBrushStroke } = require('./utils/draw-utils');
+  const { newBrushStroke, randomBrushStroke } = require('./utils/draw-utils');
   const { randomColor } = require('./utils/color-utils');
   const imgur = require('./utils/imgur-utils');
   const auth = require('./utils/auth-utils');
@@ -64,6 +64,11 @@ module.exports = () => {
     height: 1,
     transparent: true,
   };
+  let randomBrush = false;
+  let offset = {
+    y: 11,
+    x: 20
+  };
 
   const setcolor = (x) => {
     if (bgSelect) {
@@ -75,24 +80,25 @@ module.exports = () => {
     }
   };
 
-  resizeButton.on('click', function (mouse) {
-    execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
-    resizeBox.hide();
+  welcomeButton.on('click', function (mouse) {
+    welcomeBox.hide();
     screen.render();
   });
 
   // canvas clickhandler
   canvas.on('click', function (mouse) {
-    newBrushStroke(mouse, drawColor, brush);
+    if (randomBrush === false) {
+      newBrushStroke(mouse, drawColor, brush, offset);
+    } else {
+      randomBrushStroke(mouse);
+    }
   });
 
   // menu bar clickhandlers
   saveButton.on('click', function (mouse) {
-    // the default is 'buffer'
     const output = execSync('screencapture -i ./photos/yourawesomeart.png', {
       encoding: 'utf-8',
     });
-    // screen.render();
   });
 
   uploadButton.on('click', function (mouse) {
@@ -226,6 +232,7 @@ module.exports = () => {
       height: 1,
       transparent: true,
     };
+    randomBrush = false;
   });
 
   mediumBrushButton.on('click', function (mouse) {
@@ -234,6 +241,7 @@ module.exports = () => {
       height: 3,
       transparent: true,
     };
+    randomBrush = false;
   });
 
   largeBrushButton.on('click', function (mouse) {
@@ -242,15 +250,12 @@ module.exports = () => {
       height: 4,
       transparent: true,
     };
+    randomBrush = false;
   });
 
   //fix random brush width/size/paint multiple boxes at once
   randomBrushButton.on('click', function (mouse) {
-    brush = {
-      width: 1,
-      height: 1,
-      transparent: true,
-    };
+    randomBrush = true;
   });
 
   largeEraseButton.on('click', function (mouse) {
@@ -259,6 +264,7 @@ module.exports = () => {
       height: 4,
       transparent: false,
     };
+    randomBrush = false;
     drawColor = canvas.style.bg;
   });
 
@@ -268,6 +274,17 @@ module.exports = () => {
       height: 3,
       transparent: false,
     };
+    randomBrush = false;
+    drawColor = canvas.style.bg;
+  });
+
+  smallEraseButton.on('click', function (mouse) {
+    brush = {
+      width: 2,
+      height: 1,
+      transparent: false,
+    };
+    randomBrush = false;
     drawColor = canvas.style.bg;
   });
 
@@ -304,7 +321,6 @@ module.exports = () => {
 
   screen.key(['escape'], function (ch, key) {
     screen.destroy();
-    resolve();
   });
 
   screen.render();
