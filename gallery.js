@@ -6,6 +6,7 @@ const {
   deletePrompt,
   loginPrompt,
   userPrompt,
+  exitPrompt,
 } = require('./prompts');
 const {
   deleteADrawing,
@@ -26,10 +27,10 @@ module.exports = () => {
       })
       .then((response) => {
         switch (response.option) {
-          case 'log in to edit my drawings':
+          case 'Log in to edit my drawings':
             logInSkeleton();
             break;
-          case 'show me the art!':
+          case 'Show me the art!':
             stARTupSkeleton(galleryPrompt);
             break;
           case 'Exit':
@@ -41,17 +42,14 @@ module.exports = () => {
           case 'View all drawings':
             getAllImages().then(() => stARTupSkeleton(galleryPrompt));
             break;
-          case 'View random drawings':
-            getRandomImage().then(() => stARTupSkeleton(galleryPrompt));
+          case 'View image carousel':
+            getRandomImage().then(() => exitSkeleton());
             break;
-          case 'view my drawings':
+          case 'View my drawings':
             getUserDrawings(userToken).then(() => stARTupSkeleton(userPrompt));
-            //   console.log('getall', userToken);
             break;
-          case 'delete a drawing by its ID':
-            deleteSkeleton(userToken).then(() => {
-              console.log('DELETED FOREVER'), stARTupSkeleton(userPrompt);
-            });
+          case 'Delete a drawing by its ID':
+            deleteSkeleton(userToken);
             break;
           case 'Go back to main menu':
             stARTupSkeleton(welcomePrompt);
@@ -63,7 +61,6 @@ module.exports = () => {
     inquirer.prompt(loginPrompt).then((response) => {
       if (response.githubAuth === true) {
         auth().then((token) => {
-          // deleteSkeleton(token),
           logUserIn(token), stARTupSkeleton(userPrompt), (userToken = token);
         });
       } else {
@@ -72,10 +69,20 @@ module.exports = () => {
     });
   };
 
-  const deleteSkeleton = (token) => {
+  const deleteSkeleton = (userToken) => {
     inquirer.prompt(deletePrompt).then((response) => {
-      // deleteADrawing(response.deleteIt, token);
-      console.log('userToken:', token);
+      deleteADrawing(response.deleteIt, userToken),
+        console.log('DELETED FOREVER'),
+        stARTupSkeleton(userPrompt);
+    });
+  };
+  const exitSkeleton = () => {
+    inquirer.prompt(exitPrompt).then((response) => {
+      if (response.exit === true) {
+        getRandomImage().then(() => exitSkeleton());
+      } else {
+        stARTupSkeleton(galleryPrompt);
+      }
     });
   };
 
