@@ -51,7 +51,7 @@ const {
 } = require('./interface/input-bar-children');
 
 // utils imports
-const { newBrushStroke } = require('./utils/draw-utils');
+const { newBrushStroke, randomBrushStroke } = require('./utils/draw-utils');
 const { randomColor } = require('./utils/color-utils');
 const imgur = require('./utils/imgur-utils');
 const auth = require('./utils/auth-utils');
@@ -64,6 +64,7 @@ let brush = {
   height: 1,
   transparent: true,
 };
+let randomBrush = false;
 
 //figure out how to run execSync on screen.render
 // execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
@@ -86,7 +87,12 @@ resizeButton.on('click', function (mouse) {
 
 // canvas clickhandler
 canvas.on('click', function (mouse) {
-  newBrushStroke(mouse, drawColor, brush);
+  if (randomBrush === false) {
+    
+    newBrushStroke(mouse, drawColor, brush);
+  } else {
+    randomBrushStroke(mouse);
+  }
 });
 
 // menu bar clickhandlers
@@ -223,6 +229,7 @@ smallBrushButton.on('click', function (mouse) {
     height: 1,
     transparent: true,
   };
+  randomBrush = false;
 });
 
 mediumBrushButton.on('click', function (mouse) {
@@ -231,6 +238,7 @@ mediumBrushButton.on('click', function (mouse) {
     height: 3,
     transparent: true,
   };
+  randomBrush = false;
 });
 
 largeBrushButton.on('click', function (mouse) {
@@ -239,15 +247,12 @@ largeBrushButton.on('click', function (mouse) {
     height: 4,
     transparent: true,
   };
+  randomBrush = false;
 });
 
 //fix random brush width/size/paint multiple boxes at once
 randomBrushButton.on('click', function (mouse) {
-  brush = {
-    width: 1,
-    height: 1,
-    transparent: true,
-  };
+  randomBrush = true;
 });
 
 largeEraseButton.on('click', function (mouse) {
@@ -256,6 +261,7 @@ largeEraseButton.on('click', function (mouse) {
     height: 4,
     transparent: false,
   };
+  randomBrush = false;
   drawColor = canvas.style.bg;
 });
 
@@ -265,6 +271,7 @@ mediumEraseButton.on('click', function (mouse) {
     height: 3,
     transparent: false,
   };
+  randomBrush = false;
   drawColor = canvas.style.bg;
 });
 
@@ -274,6 +281,7 @@ smallEraseButton.on('click', function (mouse) {
     height: 1,
     transparent: false,
   };
+  randomBrush = false;
   drawColor = canvas.style.bg;
 });
 
@@ -293,6 +301,7 @@ inputDirectionButton.on('click', function (mouse) {
   inputBar.toggle();
   screen.render();
 });
+
 
 // screen.key(['u'], function (ch, key){
 //   undoButton.deleteLine(i);
