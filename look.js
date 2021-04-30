@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const look = require('./gallery');
 const { titleScreen } = require('./title-screen');
 

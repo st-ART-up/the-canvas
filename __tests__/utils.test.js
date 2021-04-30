@@ -6,7 +6,6 @@ describe('utils test block', () => {
   //   expect(actual).toEqual(expect.stringContaining('http'));
   // });
   it('riggs the test', async () => {
-    const actual = await imgur();
     expect(true).toEqual(true);
   });
 });

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const inquirer = require('inquirer');
 const auth = require('./utils/auth-utils');
 const {
