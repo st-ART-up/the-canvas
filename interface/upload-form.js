@@ -118,11 +118,13 @@ const cancel = blessed.button({
   },
 });
 
+
 submit.on('press', function () {
   form.submit();
 });
 
 cancel.on('press', function () {
+  form.reset();
   form.hide();
   screen.render();
 });
