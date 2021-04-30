@@ -53,6 +53,7 @@ module.exports = () => {
   // utils imports
   const { newBrushStroke, randomBrushStroke } = require('./utils/draw-utils');
   const { randomColor } = require('./utils/color-utils');
+  const { saveToDb } = require('./utils/api-utils');
   const imgur = require('./utils/imgur-utils');
   const auth = require('./utils/auth-utils');
 
@@ -142,8 +143,8 @@ module.exports = () => {
     screen.render();
   });
 
-  loginButton.on('click', function (mouse) {
-    token = auth();
+  loginButton.on('click', async function (mouse) {
+    token = await auth();
     loginButton.hide();
     logoutButton.show();
     screen.render();
