@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 const { blockStatement } = require('@babel/types');
 const blessed = require('blessed');
 const { width } = require('window-size');
+=======
+const blessed = require('blessed');
+>>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
 
 const screen = blessed.screen({
   smartCSR: true,
