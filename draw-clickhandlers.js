@@ -137,7 +137,7 @@ module.exports = () => {
   });
 
   loginButton.on('click', function (mouse) {
-    const token = auth();
+    token = auth();
     loginButton.hide();
     logoutButton.show();
     screen.render();
