@@ -7,22 +7,30 @@ const URL = 'https://st-art-up.herokuapp.com/api/v1';
 const getAllImages = async () => {
   const allImages = await axios.get(`${URL}/drawings/all`);
   allImages.data.forEach((element) => {
-    displayImage
-      .fromURL(element.drawingUrl)
-      .then((image) => console.log(image, 'Press arrows keys to continue'));
+    displayImage.fromURL(element.drawingUrl).then((image) =>
+      console.log(`
+${image} 
+      
+Press arrows keys to continue`)
+    );
   });
 };
 
 const getRandomImage = async () => {
-  const randomImage = await axios.get(`${URL}/1`);
+  const allImages = await axios.get(`${URL}/drawings/all`);
+  let randomImage =
+    allImages.data[Math.floor(Math.random() * allImages.data.length)];
 
-  displayImage
-    .fromURL(randomImage.data[0].image)
-    .then((image) => console.log(image, 'Press arrows keys to continue'));
-  console.log(`
+  displayImage.fromURL(randomImage.drawingUrl).then((image) =>
+    console.log(`
 
-  ${randomImage.data[0].character}
-  ${randomImage.data[0].quote}`);
+${image}
+
+  Title: ${randomImage.title}
+  Caption: ${randomImage.caption}
+  Artist: ${randomImage.artist}
+  Press arrows keys to continue`)
+  );
 };
 
 const getUserDrawings = async (token) => {
