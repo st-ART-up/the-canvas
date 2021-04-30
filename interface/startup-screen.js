@@ -1,5 +1,5 @@
 const blessed = require('blessed');
-
+const { default: chalk } = require('chalk');
 const screen = blessed.screen({
   smartCSR: true,
 });
@@ -93,7 +93,9 @@ const logoContainer = blessed.box({
   height: '13%',
   tags: true,
   valign: 'middle',
-  content: '{center}Logo Placeholder{/center}',
+  content: `${chalk.blueBright.bold(
+    'PIXEL PUSHER'
+  )}\n${chalk.magentaBright.bold('EST. 2021')}`,
   style: {
     fg: '#393B42',
     bg: 231,
