@@ -6,8 +6,8 @@ const URL = 'https://st-art-up.herokuapp.com/api/v1';
 
 const receiveCode = async () => {
   return new Promise((resolve) => {
-    const PORT = process.env.PORT || 3000;
-    const server = app.listen(PORT, () => {});
+    const PORT = process.env.PORT || 3553;
+    const server = app.listen(PORT, () => { });
 
     // GitHub OAuth endpoint for user verification, the sent to redirect URI
     open(
@@ -15,7 +15,8 @@ const receiveCode = async () => {
     );
 
     // redirect URI with temp code set as query param
-    app.use('/api/v1/auth', (req) => {
+    app.use('/api/v1/auth', (req, res) => {
+      res.sendFile(`${__dirname}/auth-exit.html`);
       resolve(req.query.code);
       server.close();
     });
