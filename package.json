@@ -5,7 +5,7 @@
   "main": "",
   "bin": {
     "canvas": "./draw.js",
-    "gallery": "./gallery.js"
+    "gallery": "./look.js"
   },
   "keywords": [
     "art",
@@ -24,7 +24,7 @@
     "start:watch": "nodemon -r dotenv/config index.js",
     "startup": "node -r dotenv/config index.js",
     "canvas": "node -r dotenv/config draw.js",
-    "gallery": "node -r dotenv/config gallery.js"
+    "gallery": "node -r dotenv/config look.js"
   },
   "jest": {
     "testEnvironment": "node"
