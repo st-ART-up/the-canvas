@@ -4,14 +4,19 @@ const app = express();
 const open = require('open');
 const URL = 'https://st-art-up.herokuapp.com/api/v1';
 
+const GITHUB_CLIENT_ID = '2832ec752fc6b6c859da';
+const GITHUB_SECRET = 'c0e32dca69e4bb2ba8c0a1bf8512a08623240e2a';
+const GITHUB_REDIRECT_URI = 'htua/1v/ipa/3553:tsohlacol//:ptth';
+
 const receiveCode = async () => {
   return new Promise((resolve) => {
     const PORT = process.env.PORT || 3553;
-    const server = app.listen(PORT, () => { });
+    const server = app.listen(PORT, () => {});
 
     // GitHub OAuth endpoint for user verification, the sent to redirect URI
+    // prettier-ignore
     open(
-      `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.GITHUB_REDIRECT_URI}&scopes=read:user`
+      `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID.split('').reverse().join('')}&redirect_uri=${GITHUB_REDIRECT_URI.split('').reverse().join('')}&scopes=read:user`
     );
 
     // redirect URI with temp code set as query param
@@ -32,8 +37,8 @@ const exchangeCodeForToken = async (code) => {
       'Content-Type': 'application/json',
     },
     data: JSON.stringify({
-      client_id: process.env.GITHUB_CLIENT_ID,
-      client_secret: process.env.GITHUB_SECRET,
+      client_id: GITHUB_CLIENT_ID.split('').reverse().join(''),
+      client_secret: GITHUB_SECRET.split('').reverse().join(''),
       code,
     }),
   });
