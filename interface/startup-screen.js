@@ -17,6 +17,32 @@ const backgroundBox = blessed.box({
   },
 });
 
+const resizeBox = blessed.box({
+  parent: screen,
+  top: 'center',
+  left: 'center',
+  width: '60%',
+  height: '60%',
+  content: 'click ok to resize your terminal window for optimal view',
+  style: {
+    bg: 183,
+    fg: '#393B42',
+  },
+});
+
+const resizeButton = blessed.box({
+  parent: resizeBox,
+  bottom: 2,
+  left: 'center',
+  width: 7,
+  height: 3,
+  content: 'OK!',
+  style: {
+    bg: 194,
+    fg: '#393B42',
+  },
+});
+
 //MENU BAR - PARENT
 ////////////////////////////////////////////////////////////////////////////////////////
 const menuBar = blessed.box({
@@ -99,7 +125,7 @@ const canvas = blessed.box({
   scrollbar: {
     ch: 'o',
     bg: 117,
-  }
+  },
 });
 
 //INPUT BAR - PARENT
@@ -132,5 +158,7 @@ module.exports = {
   colorPalette,
   toolBar,
   canvas,
-  inputContainer
-}
+  inputContainer,
+  resizeButton,
+  resizeBox,
+};

@@ -2,14 +2,12 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const open = require('open');
+const URL = 'https://st-art-up.herokuapp.com/api/v1';
 
 const receiveCode = async () => {
   return new Promise((resolve) => {
     const PORT = process.env.PORT || 3000;
-    const server = app.listen(PORT, () => {
-      // eslint-disable-next-line no-console
-      console.log(`Started on ${PORT}`);
-    });
+    const server = app.listen(PORT, () => {});
 
     // GitHub OAuth endpoint for user verification, the sent to redirect URI
     open(
@@ -20,8 +18,6 @@ const receiveCode = async () => {
     app.use('/api/v1/auth', (req) => {
       resolve(req.query.code);
       server.close();
-
-      console.log('Close Browser Window to Continue'); // may not be needed depending on Inquirer flow
     });
   });
 };
@@ -43,8 +39,19 @@ const exchangeCodeForToken = async (code) => {
   return data.access_token;
 };
 
+const logUserIn = async (token) => {
+  await axios({
+    method: 'post',
+    url: `${URL}/artists`,
+    data: {
+      token,
+    },
+  });
+};
+
 module.exports = async () => {
   const code = await receiveCode();
   const token = await exchangeCodeForToken(code);
+  await logUserIn(token);
   return token;
 };
