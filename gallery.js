@@ -49,9 +49,7 @@ module.exports = () => {
             getUserDrawings(userToken).then(() => stARTupSkeleton(userPrompt));
             break;
           case 'Delete a drawing by its ID':
-            deleteSkeleton(userToken).then(() => {
-              console.log('DELETED FOREVER'), stARTupSkeleton(userPrompt);
-            });
+            deleteSkeleton(userToken);
             break;
           case 'Go back to main menu':
             stARTupSkeleton(welcomePrompt);
@@ -71,9 +69,11 @@ module.exports = () => {
     });
   };
 
-  const deleteSkeleton = (token) => {
+  const deleteSkeleton = (userToken) => {
     inquirer.prompt(deletePrompt).then((response) => {
-      deleteADrawing(response.deleteIt, token);
+      deleteADrawing(response.deleteIt, userToken),
+        console.log('DELETED FOREVER'),
+        stARTupSkeleton(userPrompt);
     });
   };
   const exitSkeleton = () => {
