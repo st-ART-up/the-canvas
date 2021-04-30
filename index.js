@@ -1,21 +1,15 @@
-
-let runInquirer = 'hold';
-let openCanvas = false;
 const inquirer = require('inquirer');
-
-const { saveNewImagePrompt } = require('./prompts');
 const auth = require('./utils/auth-utils');
 const draw = require('./draw');
 const {
-  anonymousGalleryPrompt,
-  canvasPrompt,
-  canvasStudioGalleryPrompt,
+  galleryPrompt,
   welcomePrompt,
-  studioPrompt,
   deletePrompt,
   loginPrompt,
+  userPrompt,
 } = require('./prompts');
 const {
+  deleteADrawing,
   getAllImages,
   getRandomImage,
   getUserDrawings,
@@ -32,82 +26,57 @@ const stARTupSkeleton = (newPrompt) => {
     })
     .then((response) => {
       switch (response.option) {
-        case 'log me in!':
+        case 'log in to edit my drawings':
           logInSkeleton();
           break;
-        case 'Take me to the gallery anonymously':
-          stARTupSkeleton(anonymousGalleryPrompt);
+        case 'show me the art!':
+          stARTupSkeleton(galleryPrompt);
           break;
         case 'Exit':
           console.log('See you later!');
-          runInquirer = 'exit';
           break;
-        case 'Visit the canvas':
-          openCanvas = true;
-            runInquirer = 'end';
-            flow();
+        case 'View your drawings':
+          getUserDrawings().then(() => stARTupSkeleton(galleryPrompt));
           break;
-        // case 'Visit your studio':
-        //   stARTupSkeleton(studioPrompt);
-        //   break;
-        // case 'Visit the gallery':
-        //   stARTupSkeleton(anonymousGalleryPrompt);
-        //   break;
-        // case 'Create a new drawing':
-        //   console.log('Goes to a new drawing');
-        //   break;
-        // case 'Continue work on existing drawing':
-        //   console.log('Goes to a existing drawing to change it');
-        //   break;
-        // case 'View your drawings':
-        //   getUserDrawings().then(() => stARTupSkeleton(studioPrompt));
-        //   break;
-        // case 'Delete a drawing':
-        //   console.log('Goes to delete a drawing');
-        //   break;
-        // case 'View all drawings':
-        //   getAllImages().then(() => stARTupSkeleton(anonymousGalleryPrompt));
-        //   break;
-        // case 'View random drawings':
-        //   getRandomImage().then(() => stARTupSkeleton(anonymousGalleryPrompt));
-        //   break;
+        case 'View all drawings':
+          getAllImages().then(() => stARTupSkeleton(galleryPrompt));
+          break;
+        case 'View random drawings':
+          getRandomImage().then(() => stARTupSkeleton(galleryPrompt));
+          break;
+        case 'view my drawings':
+          getUserDrawings(userToken).then(() => stARTupSkeleton(userPrompt));
+          //   console.log('getall', userToken);
+          break;
+        case 'delete a drawing by its ID':
+          deleteSkeleton(userToken).then(() => {
+            console.log('DELETED FOREVER'), stARTupSkeleton(userPrompt);
+          });
+          break;
+        case 'Go back to main menu':
+          stARTupSkeleton(welcomePrompt);
       }
     });
 };
-
-
+let userToken;
 const logInSkeleton = () => {
   inquirer.prompt(loginPrompt).then((response) => {
     if (response.githubAuth === true) {
-      auth()
-        .then((token) => console.log(token))
-      .then(stARTupSkeleton(canvasStudioGalleryPrompt));
+      auth().then((token) => {
+        // deleteSkeleton(token),
+        logUserIn(token), stARTupSkeleton(userPrompt), (userToken = token);
+      });
     } else {
       console.log('Please create a github account to log in to stARTup');
     }
   });
 };
 
-const deleteSkeleton = () => {
+const deleteSkeleton = (token) => {
   inquirer.prompt(deletePrompt).then((response) => {
-    response.deleteIt;
+    // deleteADrawing(response.deleteIt, token);
+    console.log('userToken:', token);
   });
 };
 
-const saveSkeleton = () => {
-  inquirer
-    .prompt(saveNewImagePrompt)
-    .then((res) => console.log(res.fileUrl, res.title, res.description));
-};
-
-function flow() {
-  if (runInquirer === 'hold') {
-    stARTupSkeleton(welcomePrompt);
-  } else if (openCanvas){
-    draw();
-  }
-};
-
-  flow();
-
-// stARTupSkeleton(welcomePrompt);
+stARTupSkeleton(welcomePrompt);
