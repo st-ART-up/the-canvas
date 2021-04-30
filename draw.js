@@ -54,10 +54,7 @@ const { newBrushStroke } = require('./utils/draw-utils');
 const { randomColor } = require('./utils');
 const imgur = require('./utils/imgur-utils');
 const auth = require('./utils/auth-utils');
-<<<<<<< HEAD
-=======
 const saveToDb = require('./utils/api-utils');
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
 
 let token = '';
 let drawColor = randomColor();
@@ -129,31 +126,19 @@ uploadButton.on('click', function (mouse) {
 
 form.on('submit', async function (data) {
   const drawingUrl = await imgur();
-<<<<<<< HEAD
-  // append box with form
-=======
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
   const png = {
     drawingUrl: drawingUrl,
     token: token,
     title: data.title,
     caption: data.caption,
   };
-<<<<<<< HEAD
-  // form sent to db /POST
-=======
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
   saveToDb(png);
   form.hide();
   screen.render();
 });
 
 loginButton.on('click', function (mouse) {
-<<<<<<< HEAD
-  const token = auth();
-=======
-  auth().then((userToken) => token = userToken);
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
+  auth().then((userToken) => (token = userToken));
 });
 
 logoutButton.on('click', function (mouse) {

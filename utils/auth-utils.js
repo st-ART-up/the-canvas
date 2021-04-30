@@ -2,21 +2,12 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const open = require('open');
-<<<<<<< HEAD
-=======
 const URL = 'https://st-art-up.herokuapp.com/api/v1';
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
 
 const receiveCode = async () => {
   return new Promise((resolve) => {
     const PORT = process.env.PORT || 3000;
-    const server = app.listen(PORT, () => {
-<<<<<<< HEAD
-      // eslint-disable-next-line no-console
-      console.log(`Started on ${PORT}`);
-=======
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
-    });
+    const server = app.listen(PORT, () => {});
 
     // GitHub OAuth endpoint for user verification, the sent to redirect URI
     open(
@@ -27,11 +18,6 @@ const receiveCode = async () => {
     app.use('/api/v1/auth', (req) => {
       resolve(req.query.code);
       server.close();
-<<<<<<< HEAD
-
-      console.log('Close Browser Window to Continue'); // may not be needed depending on Inquirer flow
-=======
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
     });
   });
 };
@@ -53,11 +39,6 @@ const exchangeCodeForToken = async (code) => {
   return data.access_token;
 };
 
-<<<<<<< HEAD
-module.exports = async () => {
-  const code = await receiveCode();
-  const token = await exchangeCodeForToken(code);
-=======
 const logUserIn = async (token) => {
   await axios({
     method: 'post',
@@ -65,13 +46,12 @@ const logUserIn = async (token) => {
     data: {
       token,
     },
-  })
+  });
 };
 
 module.exports = async () => {
   const code = await receiveCode();
   const token = await exchangeCodeForToken(code);
   await logUserIn(token);
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
   return token;
 };

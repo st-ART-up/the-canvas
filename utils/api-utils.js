@@ -8,13 +8,7 @@ module.exports = async (form) => {
   return axios({
     url: `${URL}/drawings`,
     method: 'POST',
-<<<<<<< HEAD
-    headers: {},
-    data: form,
-  }).then((data) => console.log(data));
-=======
-    headers: { "Content-Type": "Application/JSON" },
+    headers: { 'Content-Type': 'Application/JSON' },
     data: form,
   });
->>>>>>> 30531dfa1f57c4c757d0858748cd64e32bceface
 };
