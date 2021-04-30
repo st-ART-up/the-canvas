@@ -5,10 +5,10 @@ const displayImage = require('display-image');
 const URL = 'https://st-art-up.herokuapp.com/api/v1';
 
 const getAllImages = async () => {
-  const allImages = await axios.get(`${URL}/2`);
+  const allImages = await axios.get(`${URL}/drawings/all`);
   allImages.data.forEach((element) => {
     displayImage
-      .fromURL(element.image)
+      .fromURL(element.drawingUrl)
       .then((image) => console.log(image, 'Press arrows keys to continue'));
   });
 };
@@ -25,17 +25,31 @@ const getRandomImage = async () => {
   ${randomImage.data[0].quote}`);
 };
 
-const getUserDrawings = async () => {
-  const allDrawings = await axios.get();
+const getUserDrawings = async (token) => {
+  const allDrawings = await axios({
+    method: 'get',
+    url: `${URL}/drawings/`,
+    data: {
+      token,
+    },
+  });
   allDrawings.data.forEach((element) => {
     displayImage
-      .fromURL(element.image)
-      .then((image) => console.log(image, 'Press arrows keys to continue'));
+      .fromURL(element.drawingUrl)
+      .then((image) => console.log(image, 'ID: ', element.id));
+    // console.log('return info:', element.);
   });
+  console.log('Press any key to continue');
 };
 
-const deleteADrawing = async () => {
-  const deletedDrawing = await axios.delete();
+const deleteADrawing = async (id, token) => {
+  await axios({
+    method: 'delete',
+    url: `${URL}/drawings/${id}`,
+    data: {
+      token,
+    },
+  });
 };
 const logUserIn = async (token) => {
   // console.log(token);
@@ -45,13 +59,13 @@ const logUserIn = async (token) => {
     data: {
       token,
     },
-  });
-  // displayImage
-  //   .fromURL(req.data.avatar)
-  // .then((image) => console.log(image, 'Press arrows keys to continue'));
+  })
+    .then((res) => displayImage.fromURL(res.data.avatar))
+    .then((image) => console.log(image, 'Press arrows keys to continue'));
 };
 
 module.exports = {
+  deleteADrawing,
   getAllImages,
   getRandomImage,
   getUserDrawings,
