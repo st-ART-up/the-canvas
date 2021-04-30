@@ -9,9 +9,13 @@ const getAllImages = async () => {
   allImages.data.forEach((element) => {
     displayImage.fromURL(element.drawingUrl).then((image) =>
       console.log(`
-${image} 
-      
-Press arrows keys to continue`)
+${image}
+
+  Title: ${element.title}
+  Caption: ${element.caption}
+  Artist: ${element.artist}
+
+  Press arrows keys to continue`)
     );
   });
 };
@@ -29,6 +33,7 @@ ${image}
   Title: ${randomImage.title}
   Caption: ${randomImage.caption}
   Artist: ${randomImage.artist}
+
   Press arrows keys to continue`)
   );
 };
