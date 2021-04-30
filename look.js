@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const draw = require('./draw-clickhandlers');
+
+const look = require('./gallery');
 const { titleScreen } = require('./title-screen');
 
 function start(callback) {
@@ -10,4 +11,4 @@ function start(callback) {
   });
 }
 
-start(titleScreen).then(draw);
+start(titleScreen).then(look);
