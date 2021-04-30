@@ -46,11 +46,7 @@ const logUserIn = async (token) => {
     data: {
       token,
     },
-<<<<<<< HEAD
-  })
-=======
   });
->>>>>>> 8445a2c63ba696e1bdbcf90931927630dcad8912
 };
 
 module.exports = async () => {
