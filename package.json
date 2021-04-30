@@ -1,6 +1,6 @@
 {
   "name": "@st-art-up/pixel-pusher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Pixel Pusher! is a canvas/studio/gallery suite for creating, managing and displaying terminal-based art pieces.",
   "main": "",
   "bin": {
