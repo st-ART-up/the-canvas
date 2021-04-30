@@ -6,8 +6,8 @@ const execSync = require('child_process').execSync;
 const {
   screen,
   canvas,
-  resizeButton,
-  resizeBox,
+  welcomeButton,
+  welcomeBox,
 } = require('./interface/startup-screen');
 const {
   saveButton,
@@ -78,9 +78,9 @@ const setcolor = (x) => {
   }
 };
 
-resizeButton.on('click', function (mouse) {
+welcomeButton.on('click', function (mouse) {
   execSync(`printf '\e[8;50;150t'`, { encoding: 'utf-8' });
-  resizeBox.hide();
+  welcomeBox.hide();
   screen.render();
 });
 
@@ -132,7 +132,7 @@ form.on('submit', async function (data) {
 });
 
 loginButton.on('click', function (mouse) {
-  auth().then((userToken) => token = userToken);
+  auth().then((userToken) => (token = userToken));
 });
 
 logoutButton.on('click', function (mouse) {
