@@ -1,4 +1,4 @@
-const imgur = require('../utils/imgur-utils');
+// const imgur = require('../utils/imgur-utils');
 
 describe('utils test block', () => {
   // it('inserts a picture to the imgur API and returns a URL', async () => {
