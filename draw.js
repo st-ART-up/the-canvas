@@ -108,10 +108,16 @@ uploadButton.on('click', function (mouse) {
   } else {
     const loginWarning = blessed.box({
       parent: screen,
-      top: 'center',
       left: 'center',
-      bg: 'red',
-      content: 'Please login to upload your art.',
+      top: 'center',
+      width: '25%',
+      height: '15%',
+      style: {
+        bg: 210,
+      },
+      tags: true,
+      content:
+        '{center}\nplease login to upload\n\n\nclick here to close{/center}',
     });
     loginWarning.on('click', function (mouse) {
       loginWarning.hide();
