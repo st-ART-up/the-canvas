@@ -5,6 +5,7 @@ const saveToDb = require('./api-utils');
 
 function clearCanvas(paint) {
   paint.destroy();
+  canvas.setContent('');
   screen.render();
 }
 
