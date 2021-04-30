@@ -1,10 +1,11 @@
 const blessed = require('blessed');
 const { menuBar } = require('./startup-screen');
+const process = require('process');
 
 const saveButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '2%',
+  left: '14%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -21,7 +22,7 @@ const saveButton = blessed.box({
 const uploadButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '14%',
+  left: '26%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -38,7 +39,7 @@ const uploadButton = blessed.box({
 const clearButton = blessed.box({
   parent: menuBar,
   top: 'center',
-  left: '26%',
+  left: '2%',
   width: '10%',
   height: '60%',
   tags: true,
@@ -87,6 +88,12 @@ const loginButton = blessed.box({
     },
   },
 });
+
+if (process.platform === 'linux') {
+  loginButton.hide();
+  saveButton.hide();
+  uploadButton.hide();
+}
 
 module.exports = {
   saveButton,

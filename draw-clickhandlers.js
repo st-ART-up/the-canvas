@@ -97,7 +97,7 @@ module.exports = () => {
 
   // menu bar clickhandlers
   saveButton.on('click', function (mouse) {
-    const output = execSync('screencapture -i ./photos/yourawesomeart.png', {
+    const output = execSync(`screencapture -i ${__dirname}/photos/yourawesomeart.png`, {
       encoding: 'utf-8',
     });
   });
