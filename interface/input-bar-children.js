@@ -11,7 +11,6 @@ const inputDirectionButton = blessed.button({
   height: 3,
   shrink: true,
   padding: {
-    // top: 1,
     right: 2,
     botton: 1,
     left: 1

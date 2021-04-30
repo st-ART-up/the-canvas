@@ -116,6 +116,7 @@ const canvas = blessed.box({
       bg: '#A7B3CA',
     },
     bg: 231,
+    fg: 57,
   },
   // added for text input ability and scrollbar in small screen
   keys: true,
@@ -144,13 +145,6 @@ const inputContainer = blessed.box({
 });
 
 screen.render();
-
-inputDirectionBox.hide();
-inputDirectionButton.on('click', function (mouse) {
-  inputDirectionBox.toggle();
-  inputBar.toggle();
-    screen.render();
-  });
 
 module.exports = {
   screen,
