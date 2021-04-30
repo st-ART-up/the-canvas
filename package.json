@@ -18,7 +18,8 @@
     "test:watch": "npm run test -- --watch",
     "start": "node -r dotenv/config index.js",
     "start:watch": "nodemon -r dotenv/config index.js",
-    "startup": "node -r dotenv/config index.js"
+    "startup": "node -r dotenv/config index.js",
+    "canvas": "node -r dotenv/config draw.js"
   },
   "jest": {
     "testEnvironment": "node"
