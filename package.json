@@ -1,11 +1,11 @@
 {
-  "name": "@st-art-up/test",
+  "name": "@st-art-up/pixel-pusher",
   "version": "1.0.0",
   "description": "stARTup is a canvas/studio/gallery suite for creating, managing and displaying terminal-based art pieces.",
-  "main": "index.js",
+  "main": "",
   "bin": {
     "canvas": "./draw.js",
-    "gallery": "./gallery.js"
+    "gallery": "./look.js"
   },
   "keywords": [
     "art",
@@ -13,13 +13,18 @@
     "drawing",
     "terminal"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/st-ART-up/the-canvas"
+  },
   "scripts": {
     "test": "jest --verbose --runInBand --testLocationInResults --setupFiles dotenv/config",
     "test:watch": "npm run test -- --watch",
     "start": "node -r dotenv/config index.js",
     "start:watch": "nodemon -r dotenv/config index.js",
     "startup": "node -r dotenv/config index.js",
-    "canvas": "node -r dotenv/config draw.js"
+    "canvas": "node -r dotenv/config draw.js",
+    "gallery": "node -r dotenv/config look.js"
   },
   "jest": {
     "testEnvironment": "node"

@@ -54,4 +54,8 @@ function titleScreen() {
   }, 800);
 }
 
-return titleScreen();
+titleScreen();
+
+module.exports = { 
+  titleScreen
+}

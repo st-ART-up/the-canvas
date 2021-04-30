@@ -7,8 +7,7 @@ const URL = 'https://st-art-up.herokuapp.com/api/v1';
 const receiveCode = async () => {
   return new Promise((resolve) => {
     const PORT = process.env.PORT || 3000;
-    const server = app.listen(PORT, () => {
-    });
+    const server = app.listen(PORT, () => { });
 
     // GitHub OAuth endpoint for user verification, the sent to redirect URI
     open(
@@ -47,7 +46,11 @@ const logUserIn = async (token) => {
     data: {
       token,
     },
+<<<<<<< HEAD
   })
+=======
+  });
+>>>>>>> 8445a2c63ba696e1bdbcf90931927630dcad8912
 };
 
 module.exports = async () => {
