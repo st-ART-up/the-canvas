@@ -65,10 +65,6 @@ module.exports = () => {
     transparent: true,
   };
 
-  if (token) {
-    loginButton.hide()
-  } else { loginButton.show() };
-
   const setcolor = (x) => {
     if (bgSelect) {
       canvas.style.bg = x;
@@ -142,10 +138,16 @@ module.exports = () => {
 
   loginButton.on('click', function (mouse) {
     const token = auth();
+    loginButton.hide();
+    logoutButton.show();
+    screen.render();
   });
 
   logoutButton.on('click', function (mouse) {
     token = '';
+    loginButton.show();
+    logoutButton.hide();
+    screen.render();
   });
 
   // color palette clickhandlers

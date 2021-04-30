@@ -69,6 +69,8 @@ const logoutButton = blessed.box({
   },
 });
 
+logoutButton.hide();
+
 const loginButton = blessed.box({
   parent: menuBar,
   top: 'center',
@@ -85,7 +87,6 @@ const loginButton = blessed.box({
     },
   },
 });
-
 
 module.exports = {
   saveButton,
