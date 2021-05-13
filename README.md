@@ -4,7 +4,9 @@ Pixel Pusher is a terminal-based drawing art app that allows users to unleash th
 
 Node.js | Blessed | Chalk | cFonts | Express | Supertest/Jest 
 
-##### Terminal Start: npx -p @st-art-up/pixel-pusher@latest canvas
+##### Terminal Start: 
+#### to make some art: npx -p @st-art-up/pixel-pusher@latest canvas
+#### to visit the gallery: npx -p @st-art-up/pixel-pusher@latest gallery 
 https://www.npmjs.com/package/@st-art-up/pixel-pusher
 
 #### App Images:
