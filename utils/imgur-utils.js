@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 IMGUR_CLIENT_ID = 'b081fc8322ae0ff';
 
 module.exports = async () => {
-   const data = await fs.readFile(`${__dirname}/photos/yourawesomeart.png`);
+  const data = await fs.readFile(`${__dirname}/../photos/yourawesomeart.png`);
   return axios({
     url: 'https://api.imgur.com/3/image',
     method: 'POST',

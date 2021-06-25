@@ -2,7 +2,6 @@ const blessed = require('blessed');
 const execSync = require('child_process').execSync;
 
 module.exports = () => {
-
   // blessed element imports
   const {
     screen,
@@ -68,7 +67,7 @@ module.exports = () => {
   let randomBrush = false;
   let offset = {
     y: 11,
-    x: 20
+    x: 20,
   };
 
   const setcolor = (x) => {
@@ -97,9 +96,12 @@ module.exports = () => {
 
   // menu bar clickhandlers
   saveButton.on('click', function (mouse) {
-    const output = execSync(`screencapture -i ${__dirname}/photos/yourawesomeart.png`, {
-      encoding: 'utf-8',
-    });
+    const output = execSync(
+      `screencapture -i ${__dirname}/photos/yourawesomeart.png`,
+      {
+        encoding: 'utf-8',
+      }
+    );
   });
 
   uploadButton.on('click', function (mouse) {
@@ -325,4 +327,4 @@ module.exports = () => {
   });
 
   screen.render();
-}
+};

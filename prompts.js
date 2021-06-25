@@ -12,7 +12,7 @@ const userPrompt = {
   choices: [
     'View my drawings',
     'Delete a drawing by its ID',
-    'Go back to main menu \n',
+    'Go back to main menu',
   ],
 };
 
